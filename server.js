@@ -2,10 +2,24 @@ const express = require('express');
 const app = express();
 const MongoClient = require('mongodb').MongoClient;
 const bodyParser = require('body-parser');
+
 app.use(bodyParser());
-const password = "L95ddjbTxcZgGpho";
-const connectionString = `mongodb+srv://m001-student:m001-student@sandbox.u2tvh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
-MongoClient.connect(connectionString, {useUnifiedTopology: true})
+
+var url = "mongodb://localhost:27017/";
+MongoClient.connect(url)
   .then(client => {
-    console.log("Connected to Database");
-  })
+    const db = client.db("gym")
+    
+    app.get('/gymnases', (req, res) => {
+      db.collection('Gymnases').find().toArray()
+        .then(results => {
+          res.send(results)
+        })
+        .catch(console.error)
+    })
+
+    app.listen(3000, () => {
+      console.log("listening on 3000")
+    })
+
+})
