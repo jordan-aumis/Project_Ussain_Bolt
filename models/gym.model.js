@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const GymModel = mongoose.model(
-    process.env.DB_NAME,
+const Schema = mongoose.Schema;
+const GymModel = new Schema(
     {
 			_id: {
 				type: String,
@@ -30,9 +30,8 @@ const GymModel = mongoose.model(
 				type: Array,
 			}
     },
-		process.env.GYMNASIUM
 )
 
 
 
-module.exports = { GymModel };
+module.exports = mongoose.model(process.env.GYMNASIUM, GymModel, process.env.GYMNASIUM);

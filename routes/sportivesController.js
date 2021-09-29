@@ -2,7 +2,7 @@ const express = require('express');
 const app = express.Router();
 var ObjectId = require('mongoose').Types.ObjectId;
 
-const { SportifsModel } = require("../models/sportifs.model");
+const  SportifsModel  = require("../models/sportifs.model");
 
 /** CRUD */
 
