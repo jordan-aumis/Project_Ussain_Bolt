@@ -185,4 +185,15 @@ app.get('/:day/:sport', (req, res)=>{
 	})
 })
 
+// gym open given a day
+app.get('/:day/', (req, res)=>{
+	GymModel.find({ "Seances.Jour": req.params.day.toLowerCase()}, 
+		(err, dataLowCase) => {
+			GymModel.find({ "Seances.Jour": req.params.day.charAt(0).toUpperCase() + req.params.day.slice(1)}, 
+		(err, dataUpper) => {
+		res.send(dataLowCase.concat(dataUpper))
+		})	
+	})
+})
+
 module.exports = app;
