@@ -3,7 +3,7 @@ require('dotenv').config()
 const dbName = process.env.DB_NAME
 let url = "mongodb://localhost:27017/"+dbName;
 
-mongoose.connect(url, (err)=>{
+let db = mongoose.connect(url, (err)=>{
     if(!err){
         console.log('MONGODB connected to ' + dbName)
     }
@@ -12,3 +12,4 @@ mongoose.connect(url, (err)=>{
     }
 }
 )
+module.exports = db
