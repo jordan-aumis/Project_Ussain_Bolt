@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-console.log(process.env.DB_NAME, process.env.GYMNASIUM)
 const GymModel = mongoose.model(
     process.env.DB_NAME,
     {
@@ -13,26 +12,27 @@ const GymModel = mongoose.model(
 			},
 			NomGymnase: {
 				type: String,
-				required: true
+				required: true,
 			},
 			Adresse: {
 				type: String,
-				required: true
+				required: true,
 			},
 			Ville: {
 				type: String,
-				required: true
+				required: true,
 			},
 			Surface: {
 				type: Number,
-				required: true
+				required: true,
 			},
 			Seances: {
 				type: Array,
-				required: true
 			}
     },
 		process.env.GYMNASIUM
 )
+
+
 
 module.exports = { GymModel };
