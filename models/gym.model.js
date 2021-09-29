@@ -32,6 +32,4 @@ const GymModel = new Schema(
     },
 )
 
-
-
 module.exports = mongoose.model(process.env.GYMNASIUM, GymModel, process.env.GYMNASIUM);
