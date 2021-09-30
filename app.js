@@ -14,6 +14,3 @@ app.use('/gymnases', verify, gymRoute)
 app.use('/sportifs', verify, SportifsRoute)
 
 app.listen(8000, ()=> console.log('HELLO WORLD'))
-
-
-
