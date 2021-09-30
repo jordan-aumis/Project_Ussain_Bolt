@@ -81,4 +81,24 @@ app.delete("/delete/:id", (req, res) => {
     );
 });
 
+// ENDPOINTS
+
+
+// getById
+app.get('/:id', (req, res) => {
+	if (!ObjectId.isValid(req.params.id))
+		res.sendStatus(400).send("User does not Exist : ", req.params.id)
+
+	SportifsModel.findById(
+		req.params.id,
+		(err, data) => {
+			if (!err)
+				res.send(data)
+			else
+				console.log("ERREUR ", err)
+		}
+	)
+})
+
+
 module.exports = app;
