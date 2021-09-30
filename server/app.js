@@ -10,8 +10,8 @@ const gymRoute = require("./routes/gymController")
 const auth = require("./routes/auth")
 
 app.use('/auth', auth)
-app.use('/gymnases', verify, gymRoute)
-app.use('/sportifs', verify, SportifsRoute)
+app.use('/gymnases', gymRoute)
+app.use('/sportifs', SportifsRoute)
 
 app.listen(8000, ()=> console.log('HELLO WORLD'))
 
