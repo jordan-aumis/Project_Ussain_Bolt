@@ -2,7 +2,7 @@ const express = require('express');
 const app = express.Router();
 var ObjectId = require('mongoose').Types.ObjectId;
 
-const  SportifsModel  = require("../models/sportifs.model");
+const SportifsModel = require("../models/sportifs.model");
 
 /** CRUD */
 
@@ -77,6 +77,58 @@ app.delete("/delete/:id", (req, res) => {
                 res.send(data);
             else
                 console.log("ERROR UPDATE ", err);
+        }
+    );
+});
+
+// ENDPOINTS
+
+
+
+// documents Count
+app.get('/count', (req, res) => {
+    SportifsModel.countDocuments({},
+        (err, data) => {
+            if (!err)
+                res.send(data.toString());
+            else
+                console.log("ERROR UPDATE ", err);
+        }
+    );
+});
+
+// Find Sportif by sexe
+app.get('/sexe/:sexe', (req, res) => {
+    SportifsModel.find({ "sexe": req.params.sexe.toLowerCase() },
+        (err, dataLowCase) => {
+            SportifsModel.find({ "Sexe": req.params.sexe },
+                (err, dataUpper) => {
+                    res.send(dataLowCase.concat(dataUpper));
+                });
+        });
+});
+
+// Find Sportif by age
+app.get('/age/:age', (req, res) => {
+    SportifsModel.find({ "Age": parseInt(req.params.age) },
+        (err, data) => {
+            res.send(data);
+        });
+
+});
+
+// getById
+app.get('/:id', (req, res) => {
+    if (!ObjectId.isValid(req.params.id))
+        res.sendStatus(400).send("User does not Exist : ", req.params.id);
+
+    SportifsModel.findById(
+        req.params.id,
+        (err, data) => {
+            if (!err)
+                res.send(data);
+            else
+                console.log("ERREUR ", err);
         }
     );
 });
