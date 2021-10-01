@@ -85,7 +85,7 @@ app.delete("/delete/:id", (req, res) => {
 // ENDPOINTS
 
 // get BY name
-app.get('/:name', (req, res) => {
+app.get('/name/:name', (req, res) => {
 	let name = req.params.name.toUpperCase()
 	console.log("Name", name)
 	GymModel.find({NomGymnase: name},
@@ -99,7 +99,7 @@ app.get('/:name', (req, res) => {
 })
 
 // Gym Average Area
-app.get('/average-area', (req, res) =>{
+app.get('/area/average-area', (req, res) =>{
 	GymModel.aggregate(
 		[
 			{
@@ -120,7 +120,7 @@ app.get('/average-area', (req, res) =>{
 })
 
 // ALL SPORT
-app.get("/all-sport", (req, res) => {
+app.get("/sports/all-sport", (req, res) => {
 	
 	GymModel.distinct("Seances.Libelle", (err, data) => {
 		if (!err)
@@ -198,7 +198,7 @@ app.get('/:day/:sport', (req, res)=>{
 })
 
 // gym given sport
-app.get('/:sport', (req, res)=>{
+app.get('/sport/:sport', (req, res)=>{
 	let sport = req.params.sport
 	if(req.params.sport !== "Hockey")
 		sport = req.params.sport.split("b").join(' b');
@@ -210,7 +210,7 @@ app.get('/:sport', (req, res)=>{
 })
 
 // gym open given a day
-app.get('/:day', (req, res)=>{
+app.get('/day/:day', (req, res)=>{
 	GymModel.find({ "Seances.Jour": req.params.day.toLowerCase()}, 
 		(err, dataLowCase) => {
 			GymModel.find({ "Seances.Jour": req.params.day.charAt(0).toUpperCase() + req.params.day.slice(1)}, 
@@ -219,5 +219,22 @@ app.get('/:day', (req, res)=>{
 		})	
 	})
 })
+
+// getById
+app.get('/:id/', (req, res) => {
+    if (!ObjectId.isValid(req.params.id))
+        res.sendStatus(400).send("User does not Exist : ", req.params.id);
+
+		GymModel.findById(
+        req.params.id,
+        (err, data) => {
+            if (!err)
+                res.send(data);
+            else
+                console.log("ERREUR ", err);
+        }
+    );
+});
+
 
 module.exports = app;

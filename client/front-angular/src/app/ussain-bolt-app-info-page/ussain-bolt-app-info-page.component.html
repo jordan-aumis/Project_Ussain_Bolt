@@ -1,11 +1,8 @@
 <div class="main-info-page">
-  <!--
+
   <div class="detail-nav">
-    <a href="/gymnases/sportifs">Sportifs</a>
-    <a href="/gymnases/seance">Seance</a>
-    <a href="/gymnases/sportifs">Sportifs</a>
-    <a href="/gymnases/seance">Seance</a>
-  </div>>-->
+    <a href="#" (click)="fetchSeance()">Seances</a>
+  </div>
   <div class="detail-info">
     <!--
     <div class="welcome-header">
@@ -13,10 +10,10 @@
       <img src="assets/images/Group.png" alt="Logo" width="300" height="500" class="app-logo">
     </div>-->
 
-    <h1>{{gymnasesData[0]._id}}</h1>
-    <p><b class="title">Address:</b> 47 bvd des brumes</p>
-    <p><b class="title">Ville: </b> PIERREFITTE</p>
-    <p><b class="title">Surface:</b> 600</p>
+    <h1>{{gymnasesData[0].NomGymnase}}</h1>
+    <p><b class="title">Address:</b> {{gymnasesData[0].Adresse}}</p>
+    <p><b class="title">City: </b> {{gymnasesData[0].Ville}}</p>
+    <p><b class="title">Surface:</b> {{gymnasesData[0].Surface}}</p>
   </div>
   <button class="detailbook-button">Book Now</button>
 </div>
