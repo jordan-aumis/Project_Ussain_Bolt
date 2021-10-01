@@ -8,17 +8,20 @@ import { GymnasiumDataServiceService } from '../services/gymnasium-data-service.
 })
 export class UssainBoltAppComponent implements OnInit {
 
+  gymnasesData : any[] | undefined;
+
   constructor(
     private gymnasiumDataServiceService: GymnasiumDataServiceService
-  ) { }
+  ) {
+    this.gymnasesData = [];
+   }
 
   ngOnInit(): void {
     this.gymnasiumDataServiceService.fetchGymnases().subscribe(
       (gymnasiumData: any) => {
-        console.log('Fetched Data : ', gymnasiumData);
+        this.gymnasesData = gymnasiumData;
       }
     )
-    console.log('Welcome component init');
   }
 
 }
