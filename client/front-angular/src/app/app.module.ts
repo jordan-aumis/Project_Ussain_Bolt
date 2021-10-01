@@ -7,6 +7,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { UssainBoltAppComponent } from './ussain-bolt-app/ussain-bolt-app.component';
 import { UssainBoltAppSideNavComponent } from './ussain-bolt-app-side-nav/ussain-bolt-app-side-nav.component';
+import { UssainBoltAppInfoPageComponent } from './ussain-bolt-app-info-page/ussain-bolt-app-info-page.component';
+import { UssainBoltAppUserPageComponent } from './ussain-bolt-app-user-page/ussain-bolt-app-user-page.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { UssainBoltAppSideNavComponent } from './ussain-bolt-app-side-nav/ussain
     NavbarComponent,
     LoginPageComponent,
     UssainBoltAppComponent,
-    UssainBoltAppSideNavComponent
+    UssainBoltAppSideNavComponent,
+    UssainBoltAppInfoPageComponent,
+    UssainBoltAppUserPageComponent
   ],
   imports: [
     BrowserModule,
