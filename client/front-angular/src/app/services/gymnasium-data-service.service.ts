@@ -1,9 +1,19 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GymnasiumDataServiceService {
 
-  constructor() { }
+  GYMNASES_URL  = 'http://localhost:8000/gymnases';
+
+  constructor(
+    private httpClient: HttpClient
+  ) { }
+
+  fetchGymnases() {
+   return this.httpClient.get(this.GYMNASES_URL);
+  }
 }
+

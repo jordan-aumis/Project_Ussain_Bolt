@@ -1,7 +1,9 @@
 const express = require('express');
+const cors = require('cors');
 require('dotenv').config()
 const app = express();
 require("./models/dbConfig")
+app.use(cors());
 app.use(express.json());
 // const verify = require('./routes/verifyToken')
 

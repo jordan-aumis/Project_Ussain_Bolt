@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GymnasiumDataServiceService } from '../services/gymnasium-data-service.service';
 
 @Component({
   selector: 'app-ussain-bolt-app',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UssainBoltAppComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private gymnasiumDataServiceService: GymnasiumDataServiceService
+  ) { }
 
   ngOnInit(): void {
+    this.gymnasiumDataServiceService.fetchGymnases().subscribe(
+      (gymnasiumData: any) => {
+        console.log('Fetched Data : ', gymnasiumData);
+      }
+    )
+    console.log('Welcome component init');
   }
 
 }
