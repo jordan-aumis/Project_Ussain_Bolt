@@ -1,0 +1,13 @@
+.gymcard{
+  display: flex;
+  margin: 10px;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 41px;
+  color: rgba(22, 18, 18, 0.678);
+  background: linear-gradient(145deg, #e6e6e6, #ffffff);
+}
+.gymcard img{
+  border-radius: 10px;
+  margin: 10px 0;
+}

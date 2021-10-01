@@ -2,7 +2,10 @@
   width: 500px;
   margin: 20px;
   overflow: scroll;
+  height: 100vh;
+  scrollbar-color: red yellow;
 }
+
 .welcome {
   font-size: 1.5rem;
   text-align: center;
