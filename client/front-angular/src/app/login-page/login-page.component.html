@@ -1,6 +1,6 @@
 <div class="container">
   <mat-card>
-    <form class="form">
+    <form class="form" [formGroup]="loginForm">
 
       <mat-form-field class="form-element">
         <input matInput placeholder="Email" formControlName="email">
@@ -14,7 +14,7 @@
 
       <div class="form-element">
         <section>
-            <button mat-raised-button color="primary" type="submit" >Sign in</button>
+            <button mat-raised-button color="primary" type="submit" (click)="onSubmit()" >Sign in</button>
             <button mat-raised-button  type="submit" >Sign Up</button>
         </section>
 

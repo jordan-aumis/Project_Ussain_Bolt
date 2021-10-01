@@ -25,9 +25,6 @@ app.post('/register', async (req, res)=>{
             password: hashedPassword,
             nom: req.body.lastName,
             prenom: req.body.firstName,
-            sexe: req.body.gender,
-            age: req.body.age,
-            sports: req.body.sports
         })
         try{
             const savedUser = await user.save()
@@ -41,12 +38,13 @@ app.post('/register', async (req, res)=>{
 
 // LOGIN
 app.post('/login', async (req, res)=>{
-
+    console.log("TOKEN sECRET", process.env.TOKEN)
     // verify if already exist
     const user = await User.findOne({ email: req.body.email })
     if(!user)
         return res.status(400).send("Email inexistant")
-   
+
+    console.log("PWD", req.body.password)
     //Check for valid Password Using Bcrypt
     const validPassword = await bcrypt.compare(req.body.password, user.password)
     if(!validPassword)
@@ -54,7 +52,7 @@ app.post('/login', async (req, res)=>{
     
     // give a token
     const token = jwt.sign({ _id: user._id }, process.env.TOKEN)
-    res.header('auth-token', token).send(token)
+    res.header('auth-token', token).json({'token': token, "user": user})
     
 })
 

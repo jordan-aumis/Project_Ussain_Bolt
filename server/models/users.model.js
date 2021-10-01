@@ -21,15 +21,6 @@ const userSchema = new Schema(
 		prenom: {
 			type: String,
 		},
-		sexe: {
-			type: String,
-		},
-		age: {
-			type: Number,
-		},
-		sports: {
-			type: Array,
-		}
 	}
 );
 
