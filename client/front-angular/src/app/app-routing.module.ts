@@ -6,9 +6,11 @@ import { UssainBoltAppComponent } from './ussain-bolt-app/ussain-bolt-app.compon
 
 
 const routes: Routes = [
-  { path: 'login', component: LoginPageComponent },
-  { path: 'register', component: RegisterPageComponent },
-  { path: 'app', component: UssainBoltAppComponent }
+  { path: 'login', component: LoginPageComponent, pathMatch: 'full' },
+  { path: 'register', component: RegisterPageComponent, pathMatch: 'full' },
+  { path: 'app', component: UssainBoltAppComponent, pathMatch: 'full' },
+  { path: 'gymnases/:id', component: UssainBoltAppComponent, pathMatch: 'full' },
+  { path: '', component: LoginPageComponent, pathMatch: 'full' }
 ];
 
 @NgModule({

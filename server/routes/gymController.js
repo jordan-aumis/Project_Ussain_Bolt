@@ -221,7 +221,7 @@ app.get('/day/:day', (req, res)=>{
 })
 
 // getById
-app.get('/:id/', (req, res) => {
+app.get('/:id', (req, res) => {
     if (!ObjectId.isValid(req.params.id))
         res.sendStatus(400).send("User does not Exist : ", req.params.id);
 
