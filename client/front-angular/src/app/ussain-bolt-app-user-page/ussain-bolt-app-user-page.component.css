@@ -17,6 +17,9 @@
   margin: 30px;
   font-size: 1.2rem;
 }
+.search-result{
+  margin-bottom: 50px;
+}
 .user-nav img {
   vertical-align: middle;
   width: 50px;
