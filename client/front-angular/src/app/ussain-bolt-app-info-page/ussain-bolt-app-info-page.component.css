@@ -7,7 +7,12 @@
   margin: 30px 80px;
   overflow: hidden;
 }
-
+.welcome-header{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
 .detail-info h1 {
   font-size: 3rem;
   margin: 30px;
