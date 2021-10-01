@@ -13,9 +13,8 @@
 mat-card {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   width: 60%;
-  height: 60vh;
+  height: 65vh;
   margin-top: 2rem;
   padding: 0;
 }
@@ -29,8 +28,8 @@ mat-card {
 
 .beautiful-image{
   width: 50%;
-  height: 60vh;
-  background-image: url('../../assets/bruce-mars-gJtDg6WfMlQ-unsplash.jpg');
+  height: 65vh;
+  background-image: url('../../assets/karsten-winegeart-0Wra5YYVQJE-unsplash.jpg');
 }
 
 .form-element {
