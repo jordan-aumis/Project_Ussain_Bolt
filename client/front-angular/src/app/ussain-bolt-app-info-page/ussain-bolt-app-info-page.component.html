@@ -1,15 +1,33 @@
 <div class="main-info-page">
 
   <div class="detail-nav" *ngIf="oneGymnasesData != 0">
-    <a [routerLink]="['/gymnases/566eec69662b388eba4642a8']" (click)="fetchById()">Seances</a>
+    <a (click)="isVisbleSeanceAction()" *ngIf="!isSeacneVisble">Seances</a>
+    <a (click)="isHiddenSeanceAction()" *ngIf="isSeacneVisble">Info Gymnases</a>
   </div>
   <div class="detail-info">
+    <button class="button-janus  button--janus " (click)="fetchSeanceByDay('Lundi')"><span>Lundi</span></button>
+    <button class="button-janus  button--janus" (click)="fetchSeanceByDay('Mardi')"><span>Mardi</span></button>
+    <button class="button-janus  button--janus" (click)="fetchSeanceByDay('Mercredi')"><span>Mercredi</span></button>
+    <button class="button-janus  button--janus" (click)="fetchSeanceByDay('Jeudi')"><span>Jeudi</span></button>
+    <button class="button-janus  button--janus" (click)="fetchSeanceByDay('Vendredi')"><span>Vendredi</span></button>
+    <button class="button-janus  button--janus" (click)="fetchSeanceByDay('Samedi')"><span>Samedi</span></button>
+    <button class="button-janus  button--janus" (click)="fetchSeanceByDay('Dimanche')"><span>Dimanche</span></button>
+    <div *ngIf="isSeacneVisble">
+      <div *ngFor="let seance of seances">
+          <p>
+            <span class="card-libelle">{{seance.Libelle}} </span><br>
+            <b class="title">Horaire:</b> {{seance.Horaire}} hr <br>
+            <b class="title">Duree:</b> {{seance.Duree}} mins <br>
+          <p>
+      </div>
+    </div>
+
     <div class="welcome-header" *ngIf="oneGymnasesData == 0">
       <h1>Let's Go</h1>
       <img src="assets/images/Group.png" alt="Logo" width="300" height="500" class="app-logo">
     </div>
 
-    <div *ngIf="oneGymnasesData != 0">
+    <div *ngIf="oneGymnasesData != 0 && !isSeacneVisble">
       <h1>{{oneGymnasesData.NomGymnase}}</h1>
       <p><b class="title">Address:</b> {{oneGymnasesData.Adresse}}</p>
       <p><b class="title">City: </b> {{oneGymnasesData.Ville}}</p>
@@ -17,5 +35,5 @@
     </div>
   </div>
 
-  <button class="detailbook-button" *ngIf="oneGymnasesData != 0">Book Now</button>
+  <button class="detailbook-button" *ngIf="oneGymnasesData != 0 && !isSeacneVisble">Book Now</button>
 </div>

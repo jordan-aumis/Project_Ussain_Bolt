@@ -13,6 +13,8 @@ export class UssainBoltAppInfoPageComponent implements OnInit {
   oneGymnasesData: any;
   id: any;
   params: any;
+  isSeacneVisble: boolean;
+  seances: any[] | null;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -21,7 +23,9 @@ export class UssainBoltAppInfoPageComponent implements OnInit {
     this.gymnasesData = [];
     this.oneGymnasesData = [];
     this.id = null;
-  }
+    this.isSeacneVisble = false;
+    this.seances = null;
+  };
 
   ngOnInit(): void {
     this.gymnasiumDataServiceService.fetchGymnases().subscribe(
@@ -46,6 +50,21 @@ export class UssainBoltAppInfoPageComponent implements OnInit {
         console.log("this.oneGymnasesData", this.oneGymnasesData);
       }
     );
+  }
+  fetchSeanceByDay(day: string): void {
+    const result = this.oneGymnasesData.Seances.filter((seance: {
+      Duree: number,
+      Horaire: number,
+      IdSportifEntraineur: number,
+      Jour: string,
+      Libelle: string,}) => seance.Jour == day);
+      this.seances = result;
+  }
+  isVisbleSeanceAction(): any {
+    this.isSeacneVisble = true;
+  }
+  isHiddenSeanceAction(): any {
+    this.isSeacneVisble = false;
   }
 
 }
