@@ -19,6 +19,7 @@ import { UssainBoltAppSideNavComponent } from './ussain-bolt-app-side-nav/ussain
 import { UssainBoltAppInfoPageComponent } from './ussain-bolt-app-info-page/ussain-bolt-app-info-page.component';
 import { UssainBoltAppUserPageComponent } from './ussain-bolt-app-user-page/ussain-bolt-app-user-page.component';
 import { UssainBoltAppGymCardComponent } from './ussain-bolt-app-gym-card/ussain-bolt-app-gym-card.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { UssainBoltAppGymCardComponent } from './ussain-bolt-app-gym-card/ussain
     UssainBoltAppSideNavComponent,
     UssainBoltAppInfoPageComponent,
     UssainBoltAppUserPageComponent,
-    UssainBoltAppGymCardComponent
+    UssainBoltAppGymCardComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
