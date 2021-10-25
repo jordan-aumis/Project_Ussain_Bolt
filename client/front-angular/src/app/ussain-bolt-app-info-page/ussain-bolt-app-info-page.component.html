@@ -1,6 +1,6 @@
 <div class="main-info-page">
 
-  <div class="detail-nav">
+  <div class="detail-nav" *ngIf="oneGymnasesData != 0">
     <a [routerLink]="['/gymnases/566eec69662b388eba4642a8']" (click)="fetchById()">Seances</a>
   </div>
   <div class="detail-info">

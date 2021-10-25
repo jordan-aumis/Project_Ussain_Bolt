@@ -1,16 +1,33 @@
+<div *ngFor="let gym of gymnasesData">
+  <a [routerLink]="['gymnases', gym._id]">
+    <div class="gymcard">
+      <img src="assets/images/basketball.jpg" alt="basketball" height="100" width="150">
+      <div class="detail">
+        <p>{{gym.NomGymnase}}</p>
+        <p><b class="title">Address:</b> {{gym.Adresse}}</p>
+        <p><b class="title">City: </b> {{gym.Ville}}</p>
+        <p><b class="title">Surface:</b> {{gym.Surface}}</p>
+      </div>
+    </div>
+  </a>
+</div>
+
+
 <div class="gymcard">
-  <img src="assets/images/basketball.jpg" alt="basketball" height="150" width="250">
+  <img src="assets/images/basketball.jpg" alt="basketball" height="100" width="150">
   <h1>Basket Ball</h1>
 </div>
 <div class="gymcard">
-  <img src="assets/images/handball.jpg" alt="handball" height="150" width="250">
+  <img src="assets/images/handball.jpg" alt="handball" height="100" width="150">
   <h1>Hand Ball</h1>
 </div>
 <div class="gymcard">
-  <img src="assets/images/hockey.jpg" alt="hockey" height="150" width="250">
+  <img src="assets/images/hockey.jpg" alt="hockey" height="100" width="150">
   <h1>Hockey</h1>
 </div>
 <div class="gymcard">
-  <img src="assets/images/volleyball.jpg" alt="volleyball" height="150" width="250">
+  <img src="assets/images/volleyball.jpg" alt="volleyball" height="100" width="150">
   <h1>Basketball</h1>
 </div>
+
+
