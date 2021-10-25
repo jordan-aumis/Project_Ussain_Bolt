@@ -15,5 +15,9 @@ export class GymnasiumDataServiceService {
   fetchGymnases() {
    return this.httpClient.get(this.GYMNASES_URL);
   }
+  fetchById(id: any) {
+   return this.httpClient.get(`${this.GYMNASES_URL}/${id}`);
+  }
+
 }
 

@@ -1,22 +1,21 @@
 <div class="main-info-page">
-  <!--
-  <div class="detail-nav">
-    <a href="/gymnases/sportifs">Sportifs</a>
-    <a href="/gymnases/seance">Seance</a>
-    <a href="/gymnases/sportifs">Sportifs</a>
-    <a href="/gymnases/seance">Seance</a>
-  </div>>-->
+
+  <div class="detail-nav" *ngIf="oneGymnasesData != 0">
+    <a [routerLink]="['/gymnases/566eec69662b388eba4642a8']" (click)="fetchById()">Seances</a>
+  </div>
   <div class="detail-info">
-    <!--
-    <div class="welcome-header">
+    <div class="welcome-header" *ngIf="oneGymnasesData == 0">
       <h1>Let's Go</h1>
       <img src="assets/images/Group.png" alt="Logo" width="300" height="500" class="app-logo">
-    </div>-->
+    </div>
 
-    <h1>{{gymnasesData[0]._id}}</h1>
-    <p><b class="title">Address:</b> 47 bvd des brumes</p>
-    <p><b class="title">Ville: </b> PIERREFITTE</p>
-    <p><b class="title">Surface:</b> 600</p>
+    <div *ngIf="oneGymnasesData != 0">
+      <h1>{{oneGymnasesData.NomGymnase}}</h1>
+      <p><b class="title">Address:</b> {{oneGymnasesData.Adresse}}</p>
+      <p><b class="title">City: </b> {{oneGymnasesData.Ville}}</p>
+      <p><b class="title">Surface:</b> {{oneGymnasesData.Surface}}</p>
+    </div>
   </div>
-  <button class="detailbook-button">Book Now</button>
+
+  <button class="detailbook-button" *ngIf="oneGymnasesData != 0">Book Now</button>
 </div>
