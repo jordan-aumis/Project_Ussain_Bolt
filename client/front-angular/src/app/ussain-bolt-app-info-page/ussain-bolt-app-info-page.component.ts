@@ -32,6 +32,11 @@ export class UssainBoltAppInfoPageComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.id = params.id;
     });
+    this.fetchById();
+  }
+
+  ngOnChanges(): void {
+    this.fetchById();
   }
 
   fetchById(): void {
