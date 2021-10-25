@@ -5,20 +5,29 @@
     <a (click)="isHiddenSeanceAction()" *ngIf="isSeacneVisble">Info Gymnases</a>
   </div>
   <div class="detail-info">
-    <button class="button-janus  button--janus " (click)="fetchSeanceByDay('Lundi')"><span>Lundi</span></button>
-    <button class="button-janus  button--janus" (click)="fetchSeanceByDay('Mardi')"><span>Mardi</span></button>
-    <button class="button-janus  button--janus" (click)="fetchSeanceByDay('Mercredi')"><span>Mercredi</span></button>
-    <button class="button-janus  button--janus" (click)="fetchSeanceByDay('Jeudi')"><span>Jeudi</span></button>
-    <button class="button-janus  button--janus" (click)="fetchSeanceByDay('Vendredi')"><span>Vendredi</span></button>
-    <button class="button-janus  button--janus" (click)="fetchSeanceByDay('Samedi')"><span>Samedi</span></button>
-    <button class="button-janus  button--janus" (click)="fetchSeanceByDay('Dimanche')"><span>Dimanche</span></button>
+    <div class="button-nav"  *ngIf="isSeacneVisble">
+      <div>
+        <button class="button-janus  button--janus" (click)="fetchSeanceByDay('Lundi')"><span>Lundi</span></button>
+        <button class="button-janus  button--janus" (click)="fetchSeanceByDay('Mardi')"><span>Mardi</span></button>
+        <button class="button-janus  button--janus" (click)="fetchSeanceByDay('Mercredi')"><span>Mercredi</span></button>
+      </div>
+      <div>
+        <button class="button-janus  button--janus" (click)="fetchSeanceByDay('Jeudi')"><span>Jeudi</span></button>
+        <button class="button-janus  button--janus" (click)="fetchSeanceByDay('Vendredi')"><span>Vendredi</span></button>
+        <button class="button-janus  button--janus" (click)="fetchSeanceByDay('Samedi')"><span>Samedi</span></button>
+        <button class="button-janus  button--janus" (click)="fetchSeanceByDay('Dimanche')"><span>Dimanche</span></button>
+      </div>
+    </div>
     <div *ngIf="isSeacneVisble">
-      <div *ngFor="let seance of seances">
+      <ng-container *ngFor="let seance of seances">
           <p>
             <span class="card-libelle">{{seance.Libelle}} </span><br>
             <b class="title">Horaire:</b> {{seance.Horaire}} hr <br>
             <b class="title">Duree:</b> {{seance.Duree}} mins <br>
           <p>
+      </ng-container>
+      <div *ngIf="seances && seances.length <= 0">
+        <p>Pas de seance disponible</p>
       </div>
     </div>
 
