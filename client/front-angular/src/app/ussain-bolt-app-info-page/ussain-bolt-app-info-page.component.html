@@ -47,7 +47,7 @@
 
     </div>
   </div>
-  <div *ngIf="showBooking" class="seance-select">
+  <div *ngIf="showBooking && !showSuccessPage" class="seance-select">
     <div class="detail-info">
       <p class="seance-title">Dispo</p>
       <div *ngFor="let seance of oneGymnasesData.Seances" class="seance-roll">
@@ -75,6 +75,12 @@
       </div>
       <a class="detailbook-button  book-button" (click)="onCreateBooking()">Book</a>
     </div>
+  </div>
+  <div class="detail-info" *ngIf="showSuccessPage">
+    <p class="success-info">
+      Félicitations votre réservation est prête
+    </p>
+    <p (click)="isHiddenSeanceAction()">Info Gymnases</p>
   </div>
   <a class="detailbook-button" *ngIf="oneGymnasesData != 0 && !isSeacneVisble  && !showBooking"
     (click)="showBookingsAction()">Book Now</a>

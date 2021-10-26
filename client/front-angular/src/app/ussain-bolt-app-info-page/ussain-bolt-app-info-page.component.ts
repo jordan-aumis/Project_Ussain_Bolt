@@ -21,6 +21,7 @@ export class UssainBoltAppInfoPageComponent implements OnInit {
   seances: any[] | null;
   booking: any;
   user: any;
+  showSuccessPage: any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -34,6 +35,7 @@ export class UssainBoltAppInfoPageComponent implements OnInit {
     this.id = null;
     this.isSeacneVisble = false;
     this.showBooking = false;
+    this.showSuccessPage = false;
     this.seances = null;
   };
 
@@ -95,8 +97,7 @@ export class UssainBoltAppInfoPageComponent implements OnInit {
     this.bookingServiceService.createBooking(this.oneGymnasesData.IdGymnase, this.user._id, this.selectedSeanceData).subscribe(
       (booking: any) => {
         this.booking = booking;
-        console.log("this.booking", this.booking);
-        console.log(booking)
+        this.showSuccessPage = true;
       }
     )
   }
