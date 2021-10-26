@@ -78,7 +78,6 @@ export class UssainBoltAppInfoPageComponent implements OnInit {
     this.showBooking = true;
   }
   selectedSeancesAction(IdSportifEntraineur: any, Jour: any, Horaire: any, Duree: any, Libelle: any) : any {
-
     const values = {
       "IdSportifEntraineur": IdSportifEntraineur,
 			"Jour": Jour,

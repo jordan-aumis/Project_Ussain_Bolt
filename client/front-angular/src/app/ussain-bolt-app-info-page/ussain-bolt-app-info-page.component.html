@@ -53,10 +53,11 @@
       <div *ngFor="let seance of oneGymnasesData.Seances" class="seance-roll">
         <p (click)="selectedSeancesAction(seance.IdSportifEntraineur, seance.Jour, seance.Horaire, seance.Duree, seance.Libelle)"
           class="seance">
+          <span>Test</span>
           <span class="card-libelle">{{seance.Libelle}} </span><br>
           <b class="title">Horaire:</b> {{seance.Horaire}} hr <br>
           <b class="title">Duree:</b> {{seance.Duree}} mins <br>
-        <p>
+        </p>
       </div>
     </div>
     <div class="choices-div">
