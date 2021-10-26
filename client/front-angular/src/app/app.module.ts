@@ -20,6 +20,7 @@ import { UssainBoltAppInfoPageComponent } from './ussain-bolt-app-info-page/ussa
 import { UssainBoltAppUserPageComponent } from './ussain-bolt-app-user-page/ussain-bolt-app-user-page.component';
 import { UssainBoltAppGymCardComponent } from './ussain-bolt-app-gym-card/ussain-bolt-app-gym-card.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UssainBoltAppBookingModalComponent } from './ussain-bolt-app-booking-modal/ussain-bolt-app-booking-modal.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     UssainBoltAppInfoPageComponent,
     UssainBoltAppUserPageComponent,
     UssainBoltAppGymCardComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    UssainBoltAppBookingModalComponent
   ],
   imports: [
     BrowserModule,
