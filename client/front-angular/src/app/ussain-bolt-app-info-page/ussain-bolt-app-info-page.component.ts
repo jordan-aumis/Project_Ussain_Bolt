@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalStorageService } from 'ngx-webstorage';
 import { GymnasiumDataServiceService  } from '../services/gymnasium-data-service.service';
 import { BookingServiceService  } from '../services/booking-service.service';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -50,7 +51,6 @@ export class UssainBoltAppInfoPageComponent implements OnInit {
     this.gymnasiumDataServiceService.fetchById(id).subscribe(
       (oneGymnasesData: any) => {
         this.oneGymnasesData = oneGymnasesData;
-        console.log("this.oneGymnasesData", this.oneGymnasesData);
       }
     );
   }
@@ -86,6 +86,7 @@ export class UssainBoltAppInfoPageComponent implements OnInit {
     if(values){
       this.selectedSeanceData.push(values);
     }
+
   }
   onCreateBooking(): void {
     this.bookingServiceService.createBooking(this.oneGymnasesData.IdGymnase, 1, this.selectedSeanceData).subscribe(

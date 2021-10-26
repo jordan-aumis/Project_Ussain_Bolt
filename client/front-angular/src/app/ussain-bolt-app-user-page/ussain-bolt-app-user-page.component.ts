@@ -11,6 +11,7 @@ export class UssainBoltAppUserPageComponent implements OnInit {
 
   gymnasesData : any[] | undefined;
   isConected: any | undefined;
+  user: any;
 
   constructor(
     private gymnasiumDataServiceService: GymnasiumDataServiceService,
@@ -22,7 +23,7 @@ export class UssainBoltAppUserPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.isConected = this.localStorageService.retrieve('user').token
-    console.log("IS CONNECTED", this.isConected)
+    this.user = this.localStorageService.retrieve('user').user;
     this.gymnasiumDataServiceService.fetchGymnases().subscribe(
       (gymnasiumData: any) => {
         this.gymnasesData = gymnasiumData;
