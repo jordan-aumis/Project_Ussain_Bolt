@@ -14,6 +14,7 @@ export class UssainBoltAppInfoPageComponent implements OnInit {
   id: any;
   params: any;
   isSeacneVisble: boolean;
+  isBookingModalOpen: boolean;
   seances: any[] | null;
 
   constructor(
@@ -24,6 +25,7 @@ export class UssainBoltAppInfoPageComponent implements OnInit {
     this.oneGymnasesData = [];
     this.id = null;
     this.isSeacneVisble = false;
+    this.isBookingModalOpen = false;
     this.seances = null;
   };
 
@@ -35,16 +37,12 @@ export class UssainBoltAppInfoPageComponent implements OnInit {
     );
     this.activatedRoute.params.subscribe((params: Params) => {
       this.id = params.id;
+      this.fetchById(params.id);
     });
-    this.fetchById();
   }
 
-  ngOnChanges(): void {
-    this.fetchById();
-  }
-
-  fetchById(): void {
-    this.gymnasiumDataServiceService.fetchById(this.id).subscribe(
+  fetchById(id: String): void {
+    this.gymnasiumDataServiceService.fetchById(id).subscribe(
       (oneGymnasesData: any) => {
         this.oneGymnasesData = oneGymnasesData;
         console.log("this.oneGymnasesData", this.oneGymnasesData);
@@ -67,5 +65,7 @@ export class UssainBoltAppInfoPageComponent implements OnInit {
   isHiddenSeanceAction(): any {
     this.isSeacneVisble = false;
   }
-
+  openBookingModal() : any {
+    this.isBookingModalOpen = true;
+  }
 }
