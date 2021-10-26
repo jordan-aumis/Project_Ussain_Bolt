@@ -1,0 +1,135 @@
+<h2>Users</h2>
+
+
+  <table border="1px">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of userData">
+        <td>{{user.prenom}}</td>
+        <td>{{user.nom}}</td>
+        <td>{{user.email}}</td>
+        <td>
+          <button mat-raised-button color="primary">Update</button>
+          <button mat-raised-button color="warn" (click)="deleteUser(user._id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+<form class="form" [formGroup]="userCreate">
+  <table>
+    <thead>
+      <tr>
+          <th colspan="4">Add User</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input matInput placeholder="Last name" formControlName="lastName"></td>
+        <td><input matInput placeholder="First name" formControlName="firstName"></td>
+        <td><input matInput placeholder="email" formControlName="email"></td>
+        <td><input matInput placeholder="password" formControlName="password"></td>
+        <td><button mat-raised-button color="primary" type="submit">Create</button></td>
+      </tr>
+    </tbody>
+  </table>
+</form>
+
+
+<h2>Athlete</h2>
+
+<table border="1px">
+  <thead>
+      <tr>
+          <th>Last Name</th>
+          <th>First Name</th>
+          <th>Gender</th>
+          <th>Age</th>
+          <th>Sports</th>
+      </tr>
+  </thead>
+<tbody>
+  <tr *ngFor="let athlete of athleteData">
+        <td>{{ athlete.nom }}</td>
+        <td>{{ athlete.prenom }}</td>
+        <td>{{ athlete.gender }}</td>
+        <td>{{ athlete.age }}</td>
+
+        <td>
+          <button mat-raised-button color="primary" type="submit">Update</button>
+          <button mat-raised-button color="warn" type="submit">Delete</button>
+        </td>
+  </tr>
+</tbody>
+</table>
+
+<form class="form" [formGroup]="athleteCreate">
+<table>
+  <thead>
+    <tr>
+        <th colspan="4">Add Athlete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><input matInput placeholder="Last name" formControlName="lastName"></td>
+      <td><input matInput placeholder="First name" formControlName="firstName"></td>
+      <td><input matInput placeholder="gender" formControlName="gender"></td>
+      <td><input matInput placeholder="age" formControlName="age"></td>
+      <td><button mat-raised-button color="primary" type="submit">Create</button></td>
+    </tr>
+  </tbody>
+</table>
+</form>
+
+<h2>Gymnasium</h2>
+
+<table border="1px">
+  <thead>
+      <tr>
+          <th>Nom</th>
+          <th>Adresse</th>
+          <th>Ville</th>
+          <th>Surface</th>
+      </tr>
+  </thead>
+<tbody>
+  <tr *ngFor="let gym of gymData">
+        <td>{{ gym.NomGymnase }}</td>
+        <td>{{ gym.Adresse }}</td>
+        <td>{{ gym.Ville }}</td>
+        <td>{{ gym.Surface }}</td>
+
+        <td>
+          <button mat-raised-button color="primary" type="submit">Update</button>
+          <button mat-raised-button color="warn" type="submit">Delete</button>
+        </td>
+  </tr>
+</tbody>
+</table>
+
+<form class="form" [formGroup]="gymCreate">
+<table>
+  <thead>
+    <tr>
+        <th colspan="4">Add Gym</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><input matInput placeholder="Name" formControlName="nom"></td>
+      <td><input matInput placeholder="Adresse" formControlName="adresse"></td>
+      <td><input matInput placeholder="Ville" formControlName="ville"></td>
+      <td><input matInput placeholder="Surface" formControlName="surface"></td>
+      <td><button mat-raised-button color="primary" type="submit">Create</button></td>
+    </tr>
+  </tbody>
+</table>
+</form>
+

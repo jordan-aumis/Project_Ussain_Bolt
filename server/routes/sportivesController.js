@@ -19,16 +19,18 @@ app.get("/", (req, res) => {
 
 // CREATE
 app.post("/new", (req, res) => {
+
+    const formatId = `'${req.body.id}'`;
     const newSportifs = new SportifsModel({
         _id: ObjectId(),
         IdSportif: req.body.idSportif,
-        Nom: req.body.nom,
-        Prenom: req.body.prenom,
-        Sexe: req.body.sexe,
-        Age: req.body.age,
-        Sports: req.body.sports,
+        nom: req.body.nom,
+        prenom: req.body.prenom,
+        sexe: req.body.sexe,
+        age: req.body.age,
+        sports: req.body.sports,
     });
-
+    console.log("newSportifs", newSportifs._id)
     newSportifs.save((err, data) => {
         if (!err)
             res.send(data);
@@ -126,7 +128,8 @@ app.get('/:id', (req, res) => {
         req.params.id,
         (err, data) => {
             if (!err)
-                res.send(data);
+            {console.log(data)
+                res.send(data);}
             else
                 console.log("ERREUR ", err);
         }

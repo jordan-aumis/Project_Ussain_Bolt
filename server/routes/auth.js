@@ -1,9 +1,11 @@
+const valuesToArray = require('../utils')
 const express = require('express');
 const app = express.Router();
 const ObjectId = require('mongoose').Types.ObjectId;
 const  User  = require("../models/users.model");
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken')
+
 
 
 // REGISTER
@@ -55,6 +57,33 @@ app.post('/login', async (req, res)=>{
     res.header('auth-token', token).json({'token': token, "user": user})
     
 })
+
+//GET ALL USERS
+app.get("/", async (req, res)=>{
+    User.find((err, data) => {
+		if (!err)
+			res.send(data)
+		else
+			console.log("ERREUR ", err);
+	});
+})
+
+app.delete("/delete/:id", (req, res) => {
+    if (!ObjectId.isValid(req.params.id))
+        res.status(400).send("Id is not correct :", req.params.id);
+
+    User.findByIdAndRemove(
+        req.params.id,
+        (err, data) => {
+            if (!err)
+                res.send(data);
+            else
+                console.log("ERROR UPDATE ", err);
+        }
+    );
+});
+
+
 
 
 module.exports = app
