@@ -9,11 +9,13 @@ app.use(express.json());
 
 const SportifsRoute = require("./routes/sportivesController")
 const gymRoute = require("./routes/gymController")
+const bookingRoute = require("./routes/bookingController")
 const auth = require("./routes/auth")
 
 app.use('/auth', auth)
 app.use('/gymnases', gymRoute)
 app.use('/sportifs', SportifsRoute)
+app.use('/booking', bookingRoute)
 
 app.listen(8000, ()=> console.log('HELLO WORLD'))
 

@@ -1,9 +1,9 @@
 <div *ngFor="let gym of gymnasesData">
-  <a [routerLink]="['gymnases', gym._id]">
+  <a [routerLink]="['/gymnases', gym._id]" class="card-link" >
     <div class="gymcard">
       <img src="assets/images/basketball.jpg" alt="basketball" height="100" width="150">
       <div class="detail">
-        <p>{{gym.NomGymnase}}</p>
+        <h3>{{gym.NomGymnase}}</h3>
         <p><b class="title">Address:</b> {{gym.Adresse}}</p>
         <p><b class="title">City: </b> {{gym.Ville}}</p>
         <p><b class="title">Surface:</b> {{gym.Surface}}</p>
