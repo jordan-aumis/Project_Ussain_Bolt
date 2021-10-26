@@ -51,6 +51,7 @@ export class UssainBoltAppInfoPageComponent implements OnInit {
       }
     );
   }
+
   fetchSeanceByDay(day: string): void {
     const result = this.oneGymnasesData.Seances.filter((seance: {
       Duree: number,
