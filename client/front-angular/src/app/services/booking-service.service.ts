@@ -20,8 +20,8 @@ export class BookingServiceService {
     return this.httpClient.get(`${this.BOOKING_URL}/${id}`);
    }
 
-  createBooking(idGymnase: number, idSportif: number, seances: any[] ){
-    return this.httpClient.post(`${this.BOOKING_URL}/new`, {'idGymnase': idGymnase, 'idSportif': idSportif, 'seances': seances});
+  createBooking(idGymnase: number, idUser: number, seances: any[] ){
+    return this.httpClient.post(`${this.BOOKING_URL}/new`, {'idGymnase': idGymnase, 'idUser': idUser, 'seances': seances});
   }
 
 }

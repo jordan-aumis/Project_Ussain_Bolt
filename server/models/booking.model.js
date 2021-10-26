@@ -10,8 +10,8 @@ const BookingModel = new Schema(
 				type: Number,
 				required: true,
 			},
-			IdSportif: {
-				type: Number,
+			IdUser: {
+				type: String,
 				required: true,
 			},
 			Seances: {

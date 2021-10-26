@@ -20,11 +20,13 @@ export class UssainBoltAppInfoPageComponent implements OnInit {
   showBooking: boolean;
   seances: any[] | null;
   booking: any;
+  user: any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private gymnasiumDataServiceService: GymnasiumDataServiceService,
-    private bookingServiceService: BookingServiceService
+    private bookingServiceService: BookingServiceService,
+    private localStorageService: LocalStorageService
   ) {
     this.gymnasesData = [];
     this.selectedSeanceData = [];
@@ -36,6 +38,8 @@ export class UssainBoltAppInfoPageComponent implements OnInit {
   };
 
   ngOnInit(): void {
+    this.user = this.localStorageService.retrieve('user').user;
+    console.log(this.user._id)
     this.gymnasiumDataServiceService.fetchGymnases().subscribe(
       (gymnasiumData: any) => {
         this.gymnasesData = gymnasiumData;
@@ -89,7 +93,7 @@ export class UssainBoltAppInfoPageComponent implements OnInit {
 
   }
   onCreateBooking(): void {
-    this.bookingServiceService.createBooking(this.oneGymnasesData.IdGymnase, 1, this.selectedSeanceData).subscribe(
+    this.bookingServiceService.createBooking(this.oneGymnasesData.IdGymnase, this.user._id, this.selectedSeanceData).subscribe(
       (booking: any) => {
         this.booking = booking;
         console.log("this.booking", this.booking);
