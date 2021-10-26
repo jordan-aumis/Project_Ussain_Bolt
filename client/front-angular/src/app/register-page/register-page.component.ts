@@ -1,20 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { UserService } from '../services/user.service';
+import { AthleteService } from '../services/athlete.service';
 import { Routes, Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
   styleUrls: ['./register-page.component.css'],
-  providers: [UserService]
-
+  providers: [UserService, AthleteService]
 })
 export class RegisterPageComponent implements OnInit {
 
   registerForm: FormGroup
-  constructor(private FormBuilder: FormBuilder, private user: UserService, private route: Router) {
+  userData: any;
+
+  constructor(
+    private FormBuilder: FormBuilder,
+    private user: UserService,
+    private athlete: AthleteService,
+    private route: Router
+  ) {
     this.registerForm = new FormGroup({})
+    this.userData;
   }
 
   ngOnInit(): void {
@@ -35,10 +43,20 @@ export class RegisterPageComponent implements OnInit {
     this.user.createUser(this.registerForm.value.email, this.registerForm.value.password, this.registerForm.value.firstName,  this.registerForm.value.lastName).subscribe(
       (userData: any) => {
         if(userData){
-          this.route.navigate(['login'])
+          this.userData = userData;
         }
       }
     )
+    setTimeout(() => {
+      console.log("USER DATA", this.userData)
+      this.athlete.createAthlete(this.userData.idSportif, this.userData.nom, this.userData.prenom).subscribe(
+        (athleteData: any) => {
+          console.log("ATH", athleteData)
+          if(athleteData){
+            this.route.navigate(['login'])
+          }
+        }
+      )
+    }, 500);
   }
-
 }

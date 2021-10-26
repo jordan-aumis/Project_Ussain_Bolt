@@ -7,9 +7,8 @@ const SportifsModel = new Schema(
 			type: String,
 			required: true,
 		},
-		idSportif: {
-			type: Number,
-			required: true,
+		idUser: {
+			type: String,
 		},
 		nom: {
 			type: String,
@@ -21,15 +20,12 @@ const SportifsModel = new Schema(
 		},
 		sexe: {
 			type: String,
-			required: true
 		},
 		age: {
 			type: Number,
-			required: true
 		},
 		sports: {
 			type: Map,
-			required: true
 		}
 	}
 );
