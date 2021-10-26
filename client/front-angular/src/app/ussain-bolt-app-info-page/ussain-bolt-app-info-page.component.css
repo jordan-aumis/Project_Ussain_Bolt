@@ -68,8 +68,42 @@
 .seance-card .card-libelle{
   text-align: center;
 }
+.seance{
+  cursor: pointer;
+}
 
-
+.seance-select{
+display: flex;
+}
+.seance-title{
+  background: #241276 !important;
+  padding: 30px;
+  border-radius: 50px;
+  color: #fff !important;
+  margin: 25px;
+  font-size: 1.5rem;
+  position: fixed;
+  top: 0;
+}
+.book-button{
+  position: fixed;
+  bottom: 0;
+}
+/* .choices-div{
+  height: 70vh;
+  overflow: scroll;
+  position: fixed;
+  right: 0;
+} */
+.choice{
+  padding: 20px;
+  margin: 5px;
+  color: #fff;
+  border-radius: 20px;
+  background: #e63946;
+  box-shadow:  5px 5px 0px #5c171c,
+               -5px -5px 0px #ff5b70;
+}
 .button-janus {
 	pointer-events: auto;
 	cursor: pointer;

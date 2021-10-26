@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { GymnasiumDataServiceService } from '../services/gymnasium-data-service.service';
+import { GymnasiumDataServiceService  } from '../services/gymnasium-data-service.service';
+import { BookingServiceService  } from '../services/booking-service.service';
 import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
@@ -10,22 +11,26 @@ import { ActivatedRoute, Params } from '@angular/router';
 export class UssainBoltAppInfoPageComponent implements OnInit {
 
   gymnasesData: any[];
+  selectedSeanceData: any[];
   oneGymnasesData: any;
   id: any;
   params: any;
   isSeacneVisble: boolean;
-  isBookingModalOpen: boolean;
+  showBooking: boolean;
   seances: any[] | null;
+  booking: any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private gymnasiumDataServiceService: GymnasiumDataServiceService
+    private gymnasiumDataServiceService: GymnasiumDataServiceService,
+    private bookingServiceService: BookingServiceService
   ) {
     this.gymnasesData = [];
+    this.selectedSeanceData = [];
     this.oneGymnasesData = [];
     this.id = null;
     this.isSeacneVisble = false;
-    this.isBookingModalOpen = false;
+    this.showBooking = false;
     this.seances = null;
   };
 
@@ -65,7 +70,32 @@ export class UssainBoltAppInfoPageComponent implements OnInit {
   isHiddenSeanceAction(): any {
     this.isSeacneVisble = false;
   }
-  openBookingModal() : any {
-    this.isBookingModalOpen = true;
+  showBookingsAction() : any {
+    this.showBooking = true;
   }
+  selectedSeancesAction(IdSportifEntraineur: any, Jour: any, Horaire: any, Duree: any, Libelle: any) : any {
+
+    const values = {
+      "IdSportifEntraineur": IdSportifEntraineur,
+			"Jour": Jour,
+			"Horaire": Horaire,
+			"Duree": Duree ,
+			"Libelle" : Libelle
+    }
+
+    if(values){
+      this.selectedSeanceData.push(values);
+    }
+  }
+  onCreateBooking(): void {
+    this.bookingServiceService.createBooking(this.oneGymnasesData.IdGymnase, 1, this.selectedSeanceData).subscribe(
+      (booking: any) => {
+        this.booking = booking;
+        console.log("this.booking", this.booking);
+        console.log(booking)
+      }
+    )
+  }
+
 }
+
