@@ -1,30 +1,33 @@
 <div class="main-info-page">
 
   <div class="detail-nav" *ngIf="oneGymnasesData != 0">
-    <a (click)="isVisbleSeanceAction()" *ngIf="!isSeacneVisble">Seances</a>
+    <a (click)="isVisbleSeanceAction()" *ngIf="!isSeacneVisble  && !showBooking">Seances</a>
     <a (click)="isHiddenSeanceAction()" *ngIf="isSeacneVisble">Info Gymnases</a>
   </div>
   <div class="detail-info">
-    <div class="button-nav"  *ngIf="isSeacneVisble">
+    <div class="button-nav" *ngIf="isSeacneVisble">
       <div>
         <button class="button-janus  button--janus" (click)="fetchSeanceByDay('Lundi')"><span>Lundi</span></button>
         <button class="button-janus  button--janus" (click)="fetchSeanceByDay('Mardi')"><span>Mardi</span></button>
-        <button class="button-janus  button--janus" (click)="fetchSeanceByDay('Mercredi')"><span>Mercredi</span></button>
+        <button class="button-janus  button--janus"
+          (click)="fetchSeanceByDay('Mercredi')"><span>Mercredi</span></button>
       </div>
       <div>
         <button class="button-janus  button--janus" (click)="fetchSeanceByDay('Jeudi')"><span>Jeudi</span></button>
-        <button class="button-janus  button--janus" (click)="fetchSeanceByDay('Vendredi')"><span>Vendredi</span></button>
+        <button class="button-janus  button--janus"
+          (click)="fetchSeanceByDay('Vendredi')"><span>Vendredi</span></button>
         <button class="button-janus  button--janus" (click)="fetchSeanceByDay('Samedi')"><span>Samedi</span></button>
-        <button class="button-janus  button--janus" (click)="fetchSeanceByDay('Dimanche')"><span>Dimanche</span></button>
+        <button class="button-janus  button--janus"
+          (click)="fetchSeanceByDay('Dimanche')"><span>Dimanche</span></button>
       </div>
     </div>
     <div *ngIf="isSeacneVisble">
       <ng-container *ngFor="let seance of seances">
-          <p>
-            <span class="card-libelle">{{seance.Libelle}} </span><br>
-            <b class="title">Horaire:</b> {{seance.Horaire}} hr <br>
-            <b class="title">Duree:</b> {{seance.Duree}} mins <br>
-          <p>
+        <p>
+          <span class="card-libelle">{{seance.Libelle}} </span><br>
+          <b class="title">Horaire:</b> {{seance.Horaire}} hr <br>
+          <b class="title">Duree:</b> {{seance.Duree}} mins <br>
+        <p>
       </ng-container>
       <div *ngIf="seances && seances.length <= 0">
         <p>Pas de seance disponible</p>
@@ -36,13 +39,49 @@
       <img src="assets/images/Group.png" alt="Logo" width="300" height="500" class="app-logo">
     </div>
 
-    <div *ngIf="oneGymnasesData != 0 && !isSeacneVisble">
+    <div *ngIf="oneGymnasesData != 0 && !isSeacneVisble && !showBooking">
       <h1>{{oneGymnasesData.NomGymnase}}</h1>
       <p><b class="title">Address:</b> {{oneGymnasesData.Adresse}}</p>
       <p><b class="title">City: </b> {{oneGymnasesData.Ville}}</p>
       <p><b class="title">Surface:</b> {{oneGymnasesData.Surface}}</p>
+
     </div>
   </div>
-
-  <button class="detailbook-button" *ngIf="oneGymnasesData != 0 && !isSeacneVisble">Book Now</button>
+  <div *ngIf="showBooking && !showSuccessPage" class="seance-select">
+    <div class="detail-info">
+      <p class="seance-title">Dispo</p>
+      <div *ngFor="let seance of oneGymnasesData.Seances" class="seance-roll">
+        <p (click)="selectedSeancesAction(seance.IdSportifEntraineur, seance.Jour, seance.Horaire, seance.Duree, seance.Libelle)"
+          class="seance">
+          <span>Test</span>
+          <span class="card-libelle">{{seance.Libelle}} </span><br>
+          <b class="title">Horaire:</b> {{seance.Horaire}} hr <br>
+          <b class="title">Duree:</b> {{seance.Duree}} mins <br>
+        </p>
+      </div>
+    </div>
+    <div class="choices-div">
+      <p class="seance-title choince-title">Choix</p>
+      <div *ngIf="selectedSeanceData.length <= 0">
+        <p>Choissisez votre seance</p>
+      </div>
+      <div *ngFor="let seance of selectedSeanceData" class="choice">
+        <p (click)="selectedSeancesAction(seance.IdSportifEntraineur, seance.Jour, seance.Horaire, seance.Duree, seance.Libelle)"
+          class="seance">
+          <span class="card-libelle">{{seance.Libelle}} </span><br>
+          <b class="title">Horaire:</b> {{seance.Horaire}} hr <br>
+          <b class="title">Duree:</b> {{seance.Duree}} mins <br>
+        </p>
+      </div>
+      <a class="detailbook-button  book-button" (click)="onCreateBooking()">Book</a>
+    </div>
+  </div>
+  <div class="detail-info" *ngIf="showSuccessPage">
+    <p class="success-info">
+      Félicitations votre réservation est prête
+    </p>
+    <p (click)="isHiddenSeanceAction()">Info Gymnases</p>
+  </div>
+  <a class="detailbook-button" *ngIf="oneGymnasesData != 0 && !isSeacneVisble  && !showBooking"
+    (click)="showBookingsAction()">Book Now</a>
 </div>

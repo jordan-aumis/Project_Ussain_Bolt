@@ -22,7 +22,7 @@ app.post("/new", (req, res) => {
 	const newBookiing = new BookingModel({
 		_id: ObjectId(),
 		IdGymnase: req.body.idGymnase,
-		IdSportif: req.body.idSportif,
+		IdUser: req.body.idUser,
         Seances: req.body.seances,
 	});
 
@@ -41,7 +41,7 @@ app.put("/update/:id", (req, res) => {
 	else {
 		const updateBooking = {
 			IdGymnase: req.body.idGymnase,
-			IdSportif: req.body.idSportif,
+			IdUser: req.body.idUser,
 			Seances: req.body.seances,
 		};
 

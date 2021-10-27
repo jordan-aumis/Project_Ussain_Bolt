@@ -26,6 +26,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { BackOfficeComponent } from './back-office/back-office.component';
 import { AdminUpdateComponent } from './admin-update/admin-update.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

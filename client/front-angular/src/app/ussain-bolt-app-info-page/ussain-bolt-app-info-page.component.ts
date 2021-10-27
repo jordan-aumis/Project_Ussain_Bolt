@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { GymnasiumDataServiceService } from '../services/gymnasium-data-service.service';
+import { LocalStorageService } from 'ngx-webstorage';
+import { GymnasiumDataServiceService  } from '../services/gymnasium-data-service.service';
+import { BookingServiceService  } from '../services/booking-service.service';
 import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
@@ -10,24 +12,36 @@ import { ActivatedRoute, Params } from '@angular/router';
 export class UssainBoltAppInfoPageComponent implements OnInit {
 
   gymnasesData: any[];
+  selectedSeanceData: any[];
   oneGymnasesData: any;
   id: any;
   params: any;
   isSeacneVisble: boolean;
+  showBooking: boolean;
   seances: any[] | null;
+  booking: any;
+  user: any;
+  showSuccessPage: any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private gymnasiumDataServiceService: GymnasiumDataServiceService
+    private gymnasiumDataServiceService: GymnasiumDataServiceService,
+    private bookingServiceService: BookingServiceService,
+    private localStorageService: LocalStorageService
   ) {
     this.gymnasesData = [];
+    this.selectedSeanceData = [];
     this.oneGymnasesData = [];
     this.id = null;
     this.isSeacneVisble = false;
+    this.showBooking = false;
+    this.showSuccessPage = false;
     this.seances = null;
   };
 
   ngOnInit(): void {
+    this.user = this.localStorageService.retrieve('user').user;
+    console.log(this.user._id)
     this.gymnasiumDataServiceService.fetchGymnases().subscribe(
       (gymnasiumData: any) => {
         this.gymnasesData = gymnasiumData;
@@ -35,19 +49,14 @@ export class UssainBoltAppInfoPageComponent implements OnInit {
     );
     this.activatedRoute.params.subscribe((params: Params) => {
       this.id = params.id;
+      this.fetchById(params.id);
     });
-    this.fetchById();
   }
 
-  ngOnChanges(): void {
-    this.fetchById();
-  }
-
-  fetchById(): void {
-    this.gymnasiumDataServiceService.fetchById(this.id).subscribe(
+  fetchById(id: String): void {
+    this.gymnasiumDataServiceService.fetchById(id).subscribe(
       (oneGymnasesData: any) => {
         this.oneGymnasesData = oneGymnasesData;
-        console.log("this.oneGymnasesData", this.oneGymnasesData);
       }
     );
   }
@@ -67,5 +76,31 @@ export class UssainBoltAppInfoPageComponent implements OnInit {
   isHiddenSeanceAction(): any {
     this.isSeacneVisble = false;
   }
+  showBookingsAction() : any {
+    this.showBooking = true;
+  }
+  selectedSeancesAction(IdSportifEntraineur: any, Jour: any, Horaire: any, Duree: any, Libelle: any) : any {
+    const values = {
+      "IdSportifEntraineur": IdSportifEntraineur,
+			"Jour": Jour,
+			"Horaire": Horaire,
+			"Duree": Duree ,
+			"Libelle" : Libelle
+    }
+
+    if(values){
+      this.selectedSeanceData.push(values);
+    }
+
+  }
+  onCreateBooking(): void {
+    this.bookingServiceService.createBooking(this.oneGymnasesData.IdGymnase, this.user._id, this.selectedSeanceData).subscribe(
+      (booking: any) => {
+        this.booking = booking;
+        this.showSuccessPage = true;
+      }
+    )
+  }
 
 }
+
