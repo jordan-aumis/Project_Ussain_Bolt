@@ -22,6 +22,8 @@ export class BackOfficeComponent implements OnInit {
   gymData: any;
   athleteData: any;
   users: any;
+  sports: any;
+  sessions: any;
 
   constructor(
     private FormBuilder: FormBuilder,
@@ -36,6 +38,12 @@ export class BackOfficeComponent implements OnInit {
     this.userData;
     this.gymData;
     this.athleteData;
+    this.sessions = [];
+    this.sports = {
+      Jouer: [],
+      Arbitrer: [],
+      Entrainer: []
+    };
   }
 
   ngOnInit(): void {
@@ -50,24 +58,69 @@ export class BackOfficeComponent implements OnInit {
       (data)=>{
         console.log("Users", data)
         this.userData = data
-        // this.userUpdate = data.map((data: any, index: number)=>{
-        //   new FormGroup({
-        //     firstName: new FormControl(data.prenom, Validators.required),
-        //     lastName: new FormControl(data.nom, Validators.required),
-        //     email: new FormControl(data.email, [Validators.required, Validators.email]),
-        //   })
-        // })
       }
     )
   }
 
-  deleteUser(value: string) {
-    this.user.deleteUser(value).subscribe(
-      (data)=>{
-        console.log("Users", data)
-        this.route.navigate(['admin'])
-      }
-    )
+  deleteData(value: string, type: string) {
+    switch (type) {
+
+      case "athlete":
+        this.athlete.deleteAthlete(value).subscribe(
+          (data)=>{
+            console.log("Users", data)
+          }
+        )
+        break;
+
+      case "gym":
+        this.gymnasium.deleteGymnase(value).subscribe(
+          (data)=>{
+            console.log("Users", data)
+          }
+        )
+        break;
+
+      case "user":
+        this.user.deleteUser(value).subscribe(
+          (data)=>{
+            console.log("Users", data)
+          }
+        )
+        break;
+
+      default:
+        break;
+    }
+    window.location.reload()
+  }
+
+  updateData(model: string, id: string) {
+    this.route.navigate(['admin/'+model+"/"+id])
+  }
+
+  createData(type: string) {
+    switch (type) {
+
+      case "gym":
+        this.gymnasium.createGymnase(this.gymCreate.value.name, this.gymCreate.value.address, this.gymCreate.value.town, this.gymCreate.value.area, this.sessions).subscribe(
+          (data: any)=>{
+            window.location.reload()
+          }
+        )
+        break;
+
+      case "athlete":
+        this.athlete.createFullAthlete(this.athleteCreate.value.lastName, this.athleteCreate.value.firstName, this.athleteCreate.value.gender, this.athleteCreate.value.age, this.sports)
+        break;
+
+      case "user":
+        this.user.createUser(this.userCreate.value.email, this.userCreate.value.password, this.userCreate.value.firstName, this.userCreate.value.lastName)
+        break;
+
+      default:
+        break;
+    }
   }
 
   fetchGymnasium() {
@@ -104,12 +157,36 @@ export class BackOfficeComponent implements OnInit {
     })
 
     this.gymCreate = new FormGroup({
-      nom: new FormControl('', Validators.required),
-      adresse: new FormControl('', Validators.required),
-      ville: new FormControl('', Validators.required),
-      surface: new FormControl('', Validators.required),
+      name: new FormControl('', Validators.required),
+      address: new FormControl('', Validators.required),
+      town: new FormControl('', Validators.required),
+      area: new FormControl('', Validators.required),
     })
 
+  }
+
+  addSession(value: any) {
+    this.sessions.push(value)
+  }
+
+  addSports(value: any) {
+    switch (value.type) {
+
+      case 'Entrainer':
+        this.sports.Entrainer.push(value.libelle)
+        break;
+
+      case 'Arbitrer':
+        this.sports.Arbitrer.push(value.libelle)
+        break;
+
+      case 'Jouer':
+        this.sports.Jouer.push(value.libelle)
+        break;
+
+      default:
+        break;
+    }
   }
 
 }

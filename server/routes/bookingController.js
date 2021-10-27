@@ -98,7 +98,7 @@ app.get('/:id', (req, res) => {
             if (!err)
                 res.send(data);
             else
-                console.log("ERREUR ", err);
+                console.log3("ERREUR ", err);
         }
     );
 });

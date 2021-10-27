@@ -1,32 +1,32 @@
 <h2>Users</h2>
 
 
-  <table border="1px">
-    <thead>
-      <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of userData">
-        <td>{{user.prenom}}</td>
-        <td>{{user.nom}}</td>
-        <td>{{user.email}}</td>
-        <td>
-          <button mat-raised-button color="primary">Update</button>
-          <button mat-raised-button color="warn" (click)="deleteUser(user._id)">Delete</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<table border="1px">
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of userData">
+      <td>{{user.prenom}}</td>
+      <td>{{user.nom}}</td>
+      <td>{{user.email}}</td>
+      <td>
+        <button mat-raised-button color="primary" (click)="updateData('user', user._id)">Update</button>
+        <button mat-raised-button color="warn" (click)="deleteData(user._id, 'user')">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <form class="form" [formGroup]="userCreate">
   <table>
     <thead>
       <tr>
-          <th colspan="4">Add User</th>
+        <th colspan="4">Add User</th>
       </tr>
     </thead>
     <tbody>
@@ -46,45 +46,78 @@
 
 <table border="1px">
   <thead>
-      <tr>
-          <th>Last Name</th>
-          <th>First Name</th>
-          <th>Gender</th>
-          <th>Age</th>
-          <th>Sports</th>
-      </tr>
-  </thead>
-<tbody>
-  <tr *ngFor="let athlete of athleteData">
-        <td>{{ athlete.nom }}</td>
-        <td>{{ athlete.prenom }}</td>
-        <td>{{ athlete.gender }}</td>
-        <td>{{ athlete.age }}</td>
-
-        <td>
-          <button mat-raised-button color="primary" type="submit">Update</button>
-          <button mat-raised-button color="warn" type="submit">Delete</button>
-        </td>
-  </tr>
-</tbody>
-</table>
-
-<form class="form" [formGroup]="athleteCreate">
-<table>
-  <thead>
     <tr>
-        <th colspan="4">Add Athlete</th>
+      <th>Last Name</th>
+      <th>First Name</th>
+      <th>Gender</th>
+      <th>Age</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td><input matInput placeholder="Last name" formControlName="lastName"></td>
-      <td><input matInput placeholder="First name" formControlName="firstName"></td>
-      <td><input matInput placeholder="gender" formControlName="gender"></td>
-      <td><input matInput placeholder="age" formControlName="age"></td>
-      <td><button mat-raised-button color="primary" type="submit">Create</button></td>
+    <tr *ngFor="let athlete of athleteData">
+      <td>{{ athlete.nom || athlete.Nom }}</td>
+      <td>{{ athlete.prenom || athlete.Prenom }}</td>
+      <td>{{ athlete.sexe || athlete.Sexe }}</td>
+      <td>{{ athlete.age || athlete.Age}}</td>
+
+        <button mat-raised-button color="primary" type="submit"
+          (click)="updateData('athlete', athlete._id)">Update</button>
+        <button mat-raised-button color="warn" (click)="deleteData(athlete._id, 'athlete')">Delete</button>
     </tr>
   </tbody>
+</table>
+
+<form class="form" [formGroup]="athleteCreate">
+  <table>
+    <thead>
+      <tr>
+        <th colspan="4">Add Athlete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input matInput placeholder="Last name" formControlName="lastName"></td>
+        <td><input matInput placeholder="First name" formControlName="firstName"></td>
+        <td><input matInput placeholder="gender" formControlName="gender"></td>
+        <td><input matInput placeholder="age" formControlName="age"></td>
+        <td><button mat-raised-button color="primary" type="submit">Create</button></td>
+      </tr>
+    </tbody>
+  </table>
+</form>
+<form #sportForm="ngForm" (ngSubmit)="addSports(sportForm.value)" class="tableSport">
+  <table border="1px">
+    <thead>
+      <tr>
+        <th >Sports</th>
+        <th colspan="2">Fonction</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <mat-select placeholder="Sports" name="libelle" ngModel>
+            <mat-option>None</mat-option>
+            <mat-option value="football">Football</mat-option>
+            <mat-option value="handBall">Hand Ball</mat-option>
+            <mat-option value="basketBall">Basket Ball</mat-option>
+          </mat-select>
+        </td>
+        <td>
+          <mat-select placeholder="Fonction" name="type" ngModel>
+            <mat-option>None</mat-option>
+            <mat-option value="Jouer">Play</mat-option>
+            <mat-option value="Entrainer">Coach</mat-option>
+            <mat-option value="Arbitrer">Refer</mat-option>
+          </mat-select>
+        </td>
+      </tr>
+    </tbody>
+
+  <section>
+    <button mat-raised-button color="primary" type="submit">Add Sport</button>
+  </section>
 </table>
 </form>
 
@@ -92,44 +125,98 @@
 
 <table border="1px">
   <thead>
-      <tr>
-          <th>Nom</th>
-          <th>Adresse</th>
-          <th>Ville</th>
-          <th>Surface</th>
-      </tr>
-  </thead>
-<tbody>
-  <tr *ngFor="let gym of gymData">
-        <td>{{ gym.NomGymnase }}</td>
-        <td>{{ gym.Adresse }}</td>
-        <td>{{ gym.Ville }}</td>
-        <td>{{ gym.Surface }}</td>
-
-        <td>
-          <button mat-raised-button color="primary" type="submit">Update</button>
-          <button mat-raised-button color="warn" type="submit">Delete</button>
-        </td>
-  </tr>
-</tbody>
-</table>
-
-<form class="form" [formGroup]="gymCreate">
-<table>
-  <thead>
     <tr>
-        <th colspan="4">Add Gym</th>
+      <th>Nom</th>
+      <th>Adresse</th>
+      <th>Ville</th>
+      <th>Surface</th>
+      <th>Seance</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td><input matInput placeholder="Name" formControlName="nom"></td>
-      <td><input matInput placeholder="Adresse" formControlName="adresse"></td>
-      <td><input matInput placeholder="Ville" formControlName="ville"></td>
-      <td><input matInput placeholder="Surface" formControlName="surface"></td>
-      <td><button mat-raised-button color="primary" type="submit">Create</button></td>
+    <tr *ngFor="let gym of gymData">
+      <td>{{ gym.NomGymnase }}</td>
+      <td>{{ gym.Adresse }}</td>
+      <td>{{ gym.Ville }}</td>
+      <td>{{ gym.Surface }}</td>
+
+      <td>
+        <mat-label>Seances</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let  seance of gym.Seances">{{ seance.Jour }} {{ seance.Horaire}}</mat-option>
+        </mat-select>
+      </td>
+      <td>
+        <button mat-raised-button color="primary" (click)="updateData('gym', gym._id)">Update</button>
+        <button mat-raised-button color="warn" (click)="deleteData(gym._id, 'gym')">Delete</button>
+      </td>
     </tr>
   </tbody>
 </table>
+
+<form #sessionForm="ngForm" (ngSubmit)="addSession(sessionForm.value)">
+  <table border="1px">
+    <thead>
+      <tr>
+        <th >Sport</th>
+        <th >Day</th>
+        <th>Hour</th>
+        <th >Duration</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <mat-select placeholder="Sport" name="Libelle" ngModel>
+            <mat-option>None</mat-option>
+            <mat-option value="Hockey">Hockey</mat-option>
+            <mat-option value="Basketball">Basket ball</mat-option>
+            <mat-option value="Volleyball">Volley Ball</mat-option>
+            <mat-option value="Football">Football</mat-option>
+          </mat-select>
+        </td>
+        <td>
+          <mat-select placeholder="Day" name="Jour" ngModel>
+            <mat-option>None</mat-option>
+            <mat-option value="lundi">Monday</mat-option>
+            <mat-option value="mardi">Tuesday</mat-option>
+            <mat-option value="mercredi">Wednesday</mat-option>
+            <mat-option value="jeudi">Thursday</mat-option>
+            <mat-option value="vendredi">Friday</mat-option>
+            <mat-option value="samedi">Saturday</mat-option>
+            <mat-option value="dimanche">Sunday</mat-option>
+          </mat-select>
+        </td>
+        <td>
+          <input matInput placeholder="Hour" name="Horaire" ngModel type="number">
+        </td>
+        <td>
+          <input matInput placeholder="Duration" name="Duree" ngModel type="number">
+        </td>
+      </tr>
+    </tbody>
+
+    <section>
+      <button mat-raised-button color="primary" type="submit">Add Session</button>
+    </section>
+</table>
 </form>
 
+<form class="form" [formGroup]="gymCreate">
+  <table>
+    <thead>
+      <tr>
+        <th colspan="4">Add Gym</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input matInput placeholder="Name" formControlName="name"></td>
+        <td><input matInput placeholder="Adresse" formControlName="address"></td>
+        <td><input matInput placeholder="Ville" formControlName="town"></td>
+        <td><input matInput placeholder="Surface" formControlName="area"></td>
+        <td><button mat-raised-button color="primary" (click)="createData('gym')" >Create</button></td>
+      </tr>
+    </tbody>
+  </table>
+</form>

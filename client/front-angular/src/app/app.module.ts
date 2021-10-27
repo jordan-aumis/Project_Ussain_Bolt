@@ -14,6 +14,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { UssainBoltAppComponent } from './ussain-bolt-app/ussain-bolt-app.component';
@@ -23,6 +24,7 @@ import { UssainBoltAppUserPageComponent } from './ussain-bolt-app-user-page/ussa
 import { UssainBoltAppGymCardComponent } from './ussain-bolt-app-gym-card/ussain-bolt-app-gym-card.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { BackOfficeComponent } from './back-office/back-office.component';
+import { AdminUpdateComponent } from './admin-update/admin-update.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { BackOfficeComponent } from './back-office/back-office.component';
     UssainBoltAppUserPageComponent,
     UssainBoltAppGymCardComponent,
     UserProfileComponent,
-    BackOfficeComponent
+    BackOfficeComponent,
+    AdminUpdateComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +53,7 @@ import { BackOfficeComponent } from './back-office/back-office.component';
     MatButtonModule,
     MatRadioModule,
     MatSelectModule,
+    MatDatepickerModule,
     ReactiveFormsModule,
     FormsModule,
     NgxWebstorageModule.forRoot()

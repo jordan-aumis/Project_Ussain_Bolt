@@ -43,21 +43,19 @@ app.put("/update/:id", (req, res) => {
 		res.status(400).send("Id is not correct :", req.params.id);
 	else {
 		const updateGym = {
-			IdGymnase: req.body.idGym,
 			NomGymnase: req.body.gymName,
 			Adresse: req.body.address,
 			Ville: req.body.town,
 			Surface: req.body.area,
 			Seances: req.body.sessions
 		};
-
 		GymModel.findByIdAndUpdate(
 			req.params.id,
 			{ $set: updateGym },
 			{ new: true },
 			(err, data) => {
 				if (!err)
-					res.send(data);
+					res.status(200).send(data);
 				else
 					console.log("ERROR UPDATE ", err);
 			}

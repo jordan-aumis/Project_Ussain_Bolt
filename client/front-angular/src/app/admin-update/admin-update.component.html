@@ -1,0 +1,168 @@
+<div class="container" [ngSwitch]="model">
+  <mat-card *ngSwitchCase="'user'">
+    <form class="form" [formGroup]="userForm">
+
+
+      <mat-form-field class="form-element">
+        <textarea matInput placeholder="First name" formControlName="firstName"></textarea>
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Last name" formControlName="lastName">
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Email" formControlName="email">
+
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Password" formControlName="password">
+        <mat-hint>Choose a password of at least eight characters, one uppercase letter and one number</mat-hint>
+      </mat-form-field>
+
+      <!-- <div class="form-element">
+        <mat-checkbox formControlName="validate" value="1">Name min. 3 characters</mat-checkbox>
+      </div> -->
+
+      <div class="form-element">
+        <section>
+          <button mat-raised-button color="primary" type="submit">Update User</button>
+        </section>
+      </div>
+
+    </form>
+  </mat-card>
+  <mat-card *ngSwitchCase="'athlete'">
+    <form class="form" [formGroup]="athleteForm">
+
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Last name" formControlName="lastName">
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <textarea matInput placeholder="First name" formControlName="firstName"></textarea>
+      </mat-form-field>
+
+      <!-- <mat-form-field class="form-element"> -->
+      <mat-radio-group class="form-element" aria-label="Select an option" formControlName="gender">
+        <mat-radio-button value="f">Female</mat-radio-button>
+        <mat-radio-button value="m">Male</mat-radio-button>
+      </mat-radio-group>
+      <!-- </mat-form-field> -->
+
+      <mat-form-field class="form-element">
+        <input matInput type="number" placeholder="Ex. 18" formControlName="age">
+        <span matSuffix>yo</span>
+      </mat-form-field>
+
+      <form #sportForm="ngForm" (ngSubmit)="addSports(sportForm.value)">
+        <mat-form-field appearance="fill" class="form-element">
+          <mat-label>Sports</mat-label>
+          <mat-select name="libelle" ngModel>
+            <mat-option>None</mat-option>
+            <mat-option value="football">Football</mat-option>
+            <mat-option value="handBall">Hand Ball</mat-option>
+            <mat-option value="basketBall">Basket Ball</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-element">
+          <mat-label>Does</mat-label>
+          <mat-select name="type" ngModel>
+            <mat-option>None</mat-option>
+            <mat-option value="Jouer">Play</mat-option>
+            <mat-option value="Entrainer">Coach</mat-option>
+            <mat-option value="Arbitrer">Refer</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <section>
+          <button mat-raised-button color="primary" type="submit">Add Sport</button>
+        </section>
+      </form>
+
+      <div class="form-element">
+        <section>
+          <button mat-raised-button color="primary" (click)='updateData()'>Update Profile</button>
+        </section>
+      </div>
+
+    </form>
+  </mat-card>
+  <mat-card *ngSwitchCase="'gym'">
+    <form class="form" [formGroup]="gymForm">
+
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Name" formControlName="name">
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Address" formControlName="address">
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Town" formControlName="town">
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Surface" formControlName="surface">
+      </mat-form-field>
+
+      <div class="session">
+        <mat-select placeholder="Seances">
+          <mat-option *ngFor="let session of sessions; let index = index">{{ session.day}} {{ session.time}}</mat-option>
+        </mat-select>
+      </div>
+
+      <form #sessionForm="ngForm" (ngSubmit)="addSession(sessionForm.value)">
+        <mat-form-field class="form-element">
+            <mat-label>Sport</mat-label>
+            <mat-select name="sports" ngModel>
+              <mat-option>None</mat-option>
+              <mat-option value="Hockey">Hockey</mat-option>
+              <mat-option value="Basketball">Basket ball</mat-option>
+              <mat-option value="Volleyball">Volley Ball</mat-option>
+              <mat-option value="Football">Football</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="form-element">
+            <mat-label>Day</mat-label>
+            <mat-select name="Jour" ngModel>
+              <mat-option>None</mat-option>
+              <mat-option value="lundi">Monday</mat-option>
+              <mat-option value="mardi">Tuesday</mat-option>
+              <mat-option value="mercredi">Wednesday</mat-option>
+              <mat-option value="jeudi">Thursday</mat-option>
+              <mat-option value="vendredi">Friday</mat-option>
+              <mat-option value="samedi">Saturday</mat-option>
+              <mat-option value="dimanche">Sunday</mat-option>
+            </mat-select>
+          </mat-form-field>
+        <div class="session">
+          <mat-form-field class="form-element">
+            <mat-label>Hour</mat-label>
+            <input matInput placeholder="Hour" name="Horaire" ngModel type="number">
+          </mat-form-field>
+        </div>
+        <div class="session">
+          <mat-form-field class="form-element">
+            <mat-label>Duration</mat-label>
+            <input matInput placeholder="Duration" name="Duree" ngModel type="number">
+          </mat-form-field>
+        </div>
+        <section>
+          <button mat-raised-button color="primary" type="submit">Add Session</button>
+        </section>
+      </form>
+
+
+
+      <div class="form-element">
+        <section>
+          <button mat-raised-button color="primary" (click)='updateData()'>Update Gym</button>
+        </section>
+      </div>
+    </form>
+  </mat-card>
+</div>

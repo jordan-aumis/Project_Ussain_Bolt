@@ -68,6 +68,29 @@ app.get("/", async (req, res)=>{
 	});
 })
 
+app.put("/update/:id", (req, res) => {
+	if (!ObjectId.isValid(req.params.id))
+		res.status(400).send("Id is not correct :", req.params.id);
+	else {
+		const updateGym = {
+			nom: req.body.lastName,
+			prenom: req.body.firstName,
+			email: req.body.email,
+		};
+		User.findByIdAndUpdate(
+			req.params.id,
+			{ $set: updateGym },
+			{ new: true },
+			(err, data) => {
+				if (!err)
+					res.status(200).send(data);
+				else
+					console.log("ERROR UPDATE ", err);
+			}
+		);
+	}
+});
+
 app.delete("/delete/:id", (req, res) => {
     if (!ObjectId.isValid(req.params.id))
         res.status(400).send("Id is not correct :", req.params.id);
@@ -79,6 +102,21 @@ app.delete("/delete/:id", (req, res) => {
                 res.send(data);
             else
                 console.log("ERROR UPDATE ", err);
+        }
+    );
+});
+
+app.get('/:id', (req, res) => {
+    if (!ObjectId.isValid(req.params.id))
+        res.sendStatus(400).send("User does not Exist : ", req.params.id);
+
+		User.findById(
+        req.params.id,
+        (err, data) => {
+            if (!err)
+                res.send(data);
+            else
+                console.log3("ERREUR ", err);
         }
     );
 });
