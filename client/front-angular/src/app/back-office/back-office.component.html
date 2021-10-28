@@ -2,12 +2,12 @@
   <h2>Users</h2>
 
 
-  <table border="1px">
-    <thead>
+  <table class="table">
+    <thead class="thead-dark">
       <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Email</th>
       </tr>
     </thead>
     <tbody>
@@ -16,27 +16,27 @@
         <td>{{user.nom}}</td>
         <td>{{user.email}}</td>
         <td>
-          <button (click)="updateData('user', user._id)">Update</button>
-          <button (click)="deleteData(user._id, 'user')">Delete</button>
+          <button (click)="updateData('user', user._id)" class="btn btn-warning">Update</button>
+          <button (click)="deleteData(user._id, 'user')" class="btn btn-danger">Delete</button>
         </td>
       </tr>
     </tbody>
   </table>
 
-  <form class="form" [formGroup]="userCreate">
-    <table>
-      <thead>
+  <form class="form w-100" [formGroup]="userCreate">
+    <table class="table">
+      <thead class="thead-dark">
         <tr>
           <th colspan="4">Add User</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td><input matInput placeholder="Last name" formControlName="lastName"></td>
-          <td><input matInput placeholder="First name" formControlName="firstName"></td>
-          <td><input matInput placeholder="email" formControlName="email"></td>
-          <td><input matInput placeholder="password" formControlName="password"></td>
-          <td><button (click)="createData('user')">Create</button></td>
+          <td><input  class="form-control"  matInput placeholder="Last name" formControlName="lastName"></td>
+          <td><input  class="form-control"  matInput placeholder="First name" formControlName="firstName"></td>
+          <td><input  class="form-control"  matInput placeholder="email" formControlName="email"></td>
+          <td><input  class="form-control"  matInput placeholder="password" formControlName="password"></td>
+          <td><button (click)="createData('user')" class="btn btn-primary">Create</button></td>
         </tr>
       </tbody>
     </table>
@@ -45,14 +45,14 @@
 
   <h2>Athlete</h2>
 
-  <table border="1px">
-    <thead>
+  <table class="table">
+    <thead class="thead-dark">
       <tr>
-        <th>Last Name</th>
-        <th>First Name</th>
-        <th>Gender</th>
-        <th>Age</th>
-        <th>Actions</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Age</th>
+        <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -62,17 +62,17 @@
         <td>{{ athlete.sexe || athlete.Sexe }}</td>
         <td>{{ athlete.age || athlete.Age}}</td>
 
-        <button type="submit" (click)="updateData('athlete', athlete._id)">Update</button>
-        <button (click)="deleteData(athlete._id, 'athlete')">Delete</button>
+        <button type="submit" (click)="updateData('athlete', athlete._id)" class="btn btn-warning bg-warning">Update</button>
+        <button (click)="deleteData(athlete._id, 'athlete')" class="btn btn-danger bg-danger ml-2">Delete</button>
       </tr>
     </tbody>
   </table>
 
   <form #sportForm="ngForm" (ngSubmit)="addSports(sportForm.value)" class="tableSport">
     <table border="1px">
-      <thead>
+      <thead class="thead-dark">
         <tr>
-          <th>Sports</th>
+          <th scope="col">Sports</th>
           <th colspan="2">Fonction</th>
         </tr>
       </thead>
@@ -104,18 +104,18 @@
   </form>
 
   <form class="form" [formGroup]="athleteCreate">
-    <table>
-      <thead>
+    <table class="table">
+      <thead class="thead-dark">
         <tr>
           <th colspan="4">Add Athlete</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td><input matInput placeholder="Last name" formControlName="lastName"></td>
-          <td><input matInput placeholder="First name" formControlName="firstName"></td>
-          <td><input matInput placeholder="gender" formControlName="gender"></td>
-          <td><input matInput placeholder="age" formControlName="age"></td>
+          <td><input  class="form-control"  matInput placeholder="Last name" formControlName="lastName"></td>
+          <td><input  class="form-control"  matInput placeholder="First name" formControlName="firstName"></td>
+          <td><input  class="form-control"  matInput placeholder="gender" formControlName="gender"></td>
+          <td><input  class="form-control"  matInput placeholder="age" formControlName="age"></td>
           <td><button (click)="createData('athlete')">Create</button></td>
         </tr>
       </tbody>
@@ -124,14 +124,14 @@
 
   <h2>Gymnasium</h2>
 
-  <table border="1px">
-    <thead>
+  <table class="table">
+    <thead class="thead-dark">
       <tr>
-        <th>Nom</th>
-        <th>Adresse</th>
-        <th>Ville</th>
-        <th>Surface</th>
-        <th>Seance</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Adresse</th>
+        <th scope="col">Ville</th>
+        <th scope="col">Surface</th>
+        <th scope="col">Seance</th>
       </tr>
     </thead>
     <tbody>
@@ -148,8 +148,8 @@
           </mat-select>
         </td>
         <td>
-          <button (click)="updateData('gym', gym._id)">Update</button>
-          <button (click)="deleteData(gym._id, 'gym')">Delete</button>
+          <button (click)="updateData('gym', gym._id)" class="btn btn-warning">Update</button>
+          <button (click)="deleteData(gym._id, 'gym')" class="btn btn-danger">Delete</button>
         </td>
       </tr>
     </tbody>
@@ -157,12 +157,12 @@
 
   <form #sessionForm="ngForm" (ngSubmit)="addSession(sessionForm.value)">
     <table border="1px">
-      <thead>
+      <thead class="thead-dark">
         <tr>
-          <th>Sport</th>
-          <th>Day</th>
-          <th>Hour</th>
-          <th>Duration</th>
+          <th scope="col">Sport</th>
+          <th scope="col">Day</th>
+          <th scope="col">Hour</th>
+          <th scope="col">Duration</th>
         </tr>
       </thead>
       <tbody>
@@ -189,10 +189,10 @@
             </mat-select>
           </td>
           <td>
-            <input matInput placeholder="Hour" name="Horaire" ngModel type="number">
+            <input  class="form-control"  matInput placeholder="Hour" name="Horaire" ngModel type="number">
           </td>
           <td>
-            <input matInput placeholder="Duration" name="Duree" ngModel type="number">
+            <input  class="form-control"  matInput placeholder="Duration" name="Duree" ngModel type="number">
           </td>
         </tr>
       </tbody>
@@ -204,19 +204,19 @@
   </form>
 
   <form class="form" [formGroup]="gymCreate">
-    <table>
-      <thead>
+    <table class="table">
+      <thead class="thead-dark">
         <tr>
           <th colspan="4">Add Gym</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td><input matInput placeholder="Name" formControlName="name"></td>
-          <td><input matInput placeholder="Adresse" formControlName="address"></td>
-          <td><input matInput placeholder="Ville" formControlName="town"></td>
-          <td><input matInput placeholder="Surface" formControlName="area"></td>
-          <td><button (click)="createData('gym')">Create</button></td>
+          <td><input  class="form-control"  matInput placeholder="Name" formControlName="name"></td>
+          <td><input  class="form-control"  matInput placeholder="Adresse" formControlName="address"></td>
+          <td><input  class="form-control"  matInput placeholder="Ville" formControlName="town"></td>
+          <td><input  class="form-control"  matInput placeholder="Surface" formControlName="area"></td>
+          <td><button (click)="createData('gym')" class="btn btn-primary">Create</button></td>
         </tr>
       </tbody>
     </table>
@@ -225,11 +225,11 @@
   <h2>Bookings</h2>
 
   <table border="1px">
-    <thead>
+    <thead class="thead-dark">
       <tr>
-        <th>Gymnase</th>
-        <th>User</th>
-        <th>Seance</th>
+        <th scope="col">Gymnase</th>
+        <th scope="col">User</th>
+        <th scope="col">Seance</th>
       </tr>
     </thead>
     <tbody>
