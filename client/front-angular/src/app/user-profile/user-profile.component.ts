@@ -13,6 +13,7 @@ import { Routes, Router } from '@angular/router';
 export class UserProfileComponent implements OnInit {
 
   profileForm: FormGroup;
+  userData: any;
   athlete: any;
   id: any;
   sportList: string[] = ["Basket Ball", "Hand Ball", "Football"]
@@ -26,11 +27,13 @@ export class UserProfileComponent implements OnInit {
     this.profileForm = new FormGroup({})
     this.athlete;
     this.id;
+    this.userData;
   }
 
   ngOnInit(): void {
     if(this.localStorageService.retrieve('user')){
       this.id = this.localStorageService.retrieve('user').user._id || null;
+      this.userData = this.localStorageService.retrieve('user').user
     }
     this.fetchAthlete();
     this.initializeForm();
@@ -51,9 +54,8 @@ export class UserProfileComponent implements OnInit {
 
   initializeForm() {
     this.profileForm = new FormGroup({
-      prenom: new FormControl('', Validators.required),
-      nom: new FormControl('', Validators.required),
-      email: new FormControl('', [Validators.required, Validators.email]),
+      prenom: new FormControl(this.userData.prenom, Validators.required),
+      nom: new FormControl(this.userData.nom, Validators.required),
       sexe: new FormControl('f'),
       age: new FormControl(''),
       sports: new FormControl([]),
