@@ -50,6 +50,7 @@ button {
 .user-nav{
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .login-button, .register-button{

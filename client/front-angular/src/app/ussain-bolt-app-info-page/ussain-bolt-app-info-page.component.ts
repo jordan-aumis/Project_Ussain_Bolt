@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from 'ngx-webstorage';
 import { GymnasiumDataServiceService  } from '../services/gymnasium-data-service.service';
 import { BookingServiceService  } from '../services/booking-service.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-ussain-bolt-app-info-page',
@@ -27,7 +27,8 @@ export class UssainBoltAppInfoPageComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private gymnasiumDataServiceService: GymnasiumDataServiceService,
     private bookingServiceService: BookingServiceService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private route: Router,
   ) {
     this.gymnasesData = [];
     this.selectedSeanceData = [];
@@ -80,6 +81,9 @@ export class UssainBoltAppInfoPageComponent implements OnInit {
     this.isSeacneVisble = false;
   }
   showBookingsAction() : any {
+    if(!this.user){
+      this.route.navigate(['login'])
+    }
     this.showBooking = true;
   }
   selectedSeancesAction(IdSportifEntraineur: any, Jour: any, Horaire: any, Duree: any, Libelle: any) : any {

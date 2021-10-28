@@ -32,4 +32,7 @@ export class UssainBoltAppUserPageComponent implements OnInit {
       }
     )
   }
+  logout(): void {
+    localStorage.removeItem("ngx-webstorage|user")
+  }
 }
