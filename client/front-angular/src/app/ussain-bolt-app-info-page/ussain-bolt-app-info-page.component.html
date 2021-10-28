@@ -66,8 +66,7 @@
         <p>Choissisez votre seance</p>
       </div>
       <div *ngFor="let seance of selectedSeanceData" class="choice">
-        <p (click)="selectedSeancesAction(seance.IdSportifEntraineur, seance.Jour, seance.Horaire, seance.Duree, seance.Libelle)"
-          class="seance">
+        <p class="seance" (click)="removeSelectedSeancesAction(seance.IdSportifEntraineur)">
           <span class="card-libelle">{{seance.Libelle}} </span><br>
           <b class="title">Horaire:</b> {{seance.Horaire}} hr <br>
           <b class="title">Duree:</b> {{seance.Duree}} mins <br>

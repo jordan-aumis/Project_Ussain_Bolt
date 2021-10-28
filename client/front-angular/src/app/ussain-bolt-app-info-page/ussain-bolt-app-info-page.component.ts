@@ -40,8 +40,10 @@ export class UssainBoltAppInfoPageComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    if(this.id = this.localStorageService.retrieve('user')){
-      this.user = this.localStorageService.retrieve('user').userl;
+
+    if(this.localStorageService.retrieve('user')){
+      this.id = this.localStorageService.retrieve('user').user._id || null;
+      this.user = this.localStorageService.retrieve('user').user
     }
     this.gymnasiumDataServiceService.fetchGymnases().subscribe(
       (gymnasiumData: any) => {
@@ -94,6 +96,14 @@ export class UssainBoltAppInfoPageComponent implements OnInit {
     }
 
   }
+  removeSelectedSeancesAction(IdSportifEntraineur: any) : any {
+    let items = this.selectedSeanceData;
+
+    items = items.filter(function(data) { return data.IdSportifEntraineur != IdSportifEntraineur});
+    this.selectedSeanceData = items;
+
+  }
+
   onCreateBooking(): void {
     this.bookingServiceService.createBooking(this.oneGymnasesData.IdGymnase, this.user._id, this.selectedSeanceData).subscribe(
       (booking: any) => {
