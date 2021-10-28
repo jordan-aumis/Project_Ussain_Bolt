@@ -4,6 +4,7 @@ import { UserService } from '../services/user.service';
 import { AthleteService } from '../services/athlete.service';
 import { GymnasiumDataServiceService } from '../services/gymnasium-data-service.service';
 import { BookingServiceService } from '../services/booking-service.service';
+import { LocalStorageService } from 'ngx-webstorage';
 import { Routes, Router } from '@angular/router';
 
 
@@ -34,6 +35,7 @@ export class BackOfficeComponent implements OnInit {
     private route: Router,
     private gymnasium: GymnasiumDataServiceService,
     private bookings: BookingServiceService,
+    private localStorageService: LocalStorageService,
   ) {
     this.userCreate = new FormGroup({})
     this.gymCreate = new FormGroup({})
@@ -51,6 +53,14 @@ export class BackOfficeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(this.localStorageService.retrieve('user')){
+      if(this.localStorageService.retrieve('user').user.prenom !== "admin"){
+        this.route.navigate(['login'])
+      }
+    }
+    else{
+      this.route.navigate(['login'])
+    }
     this.fetchUsers()
     this.fetchGymnasium()
     this.fetchAthlete()
