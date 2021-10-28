@@ -14,7 +14,7 @@ export class UserProfileComponent implements OnInit {
 
   profileForm: FormGroup;
   athlete: any;
-  id: string;
+  id: any;
   sportList: string[] = ["Basket Ball", "Hand Ball", "Football"]
 
   constructor(
@@ -29,7 +29,9 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.id = this.localStorageService.retrieve('user').user._id
+    if(this.localStorageService.retrieve('user')){
+      this.id = this.localStorageService.retrieve('user').user._id || null;
+    }
     this.fetchAthlete();
     this.initializeForm();
   }

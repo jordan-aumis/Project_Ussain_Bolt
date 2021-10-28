@@ -40,8 +40,9 @@ export class UssainBoltAppInfoPageComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.user = this.localStorageService.retrieve('user').user;
-    console.log(this.user._id)
+    if(this.id = this.localStorageService.retrieve('user')){
+      this.user = this.localStorageService.retrieve('user').userl;
+    }
     this.gymnasiumDataServiceService.fetchGymnases().subscribe(
       (gymnasiumData: any) => {
         this.gymnasesData = gymnasiumData;

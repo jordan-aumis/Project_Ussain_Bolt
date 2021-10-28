@@ -10,21 +10,21 @@ const SportifsModel = new Schema(
 		idUser: {
 			type: String,
 		},
-		nom: {
+		Nom: {
 			type: String,
 			required: true
 		},
-		prenom: {
+		Prenom: {
 			type: String,
 			required: true
 		},
-		sexe: {
+		Sexe: {
 			type: String,
 		},
-		age: {
+		Age: {
 			type: Number,
 		},
-		sports: {
+		Sports: {
 			type: Map,
 		}
 	}

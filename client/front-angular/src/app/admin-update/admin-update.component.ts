@@ -64,15 +64,22 @@ export class AdminUpdateComponent implements OnInit {
         this.athlete.fetchAthlete(this.id).subscribe(
           (data: any) => {
             console.log("DATA", data)
-            data.Sports.Jouer.forEach((sport: any) => {
-              this.sports.Jouer.push(sport)
-            });
-            data.Sports.Entrainer.forEach((sport: any) => {
-              this.sports.Entrainer.push(sport)
-            });
-            data.Sports.Arbitrer.forEach((sport: any) => {
-              this.sports.Arbitrer.push(sport)
-            });
+            console.log("ICI")
+            if(data.sports.Jouer){
+              data.sports.Jouer.forEach((sport: any) => {
+                this.sports.Jouer.push(sport)
+              });
+            }
+            if(data.sports.Entrainer){
+              data.sports.Entrainer.forEach((sport: any) => {
+                this.sports.Entrainer.push(sport)
+              });
+            }
+            if(data.sports.Arbitrer){
+              data.sports.Arbitrer.forEach((sport: any) => {
+                this.sports.Arbitrer.push(sport)
+              });
+            }
             console.log("SPORTS", this.sports)
             this.initializeForms(data)
           }
@@ -125,7 +132,6 @@ export class AdminUpdateComponent implements OnInit {
       firstName: new FormControl(data.prenom, Validators.required),
       lastName: new FormControl(data.nom, Validators.required),
       email: new FormControl(data.email, [Validators.required, Validators.email]),
-      password: new FormControl(data.password, Validators.required)
     })
 
     this.athleteForm = new FormGroup({

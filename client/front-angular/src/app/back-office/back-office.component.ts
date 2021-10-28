@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { UserService } from '../services/user.service';
 import { AthleteService } from '../services/athlete.service';
 import { GymnasiumDataServiceService } from '../services/gymnasium-data-service.service';
+import { BookingServiceService } from '../services/booking-service.service';
 import { Routes, Router } from '@angular/router';
 
 
@@ -11,7 +12,7 @@ import { Routes, Router } from '@angular/router';
   selector: 'app-back-office',
   templateUrl: './back-office.component.html',
   styleUrls: ['./back-office.component.css'],
-  providers: [UserService, AthleteService, GymnasiumDataServiceService]
+  providers: [UserService, AthleteService, GymnasiumDataServiceService, BookingServiceService]
 })
 export class BackOfficeComponent implements OnInit {
 
@@ -20,6 +21,7 @@ export class BackOfficeComponent implements OnInit {
   athleteCreate: FormGroup;
   userData: any;
   gymData: any;
+  bookingsData: any;
   athleteData: any;
   users: any;
   sports: any;
@@ -31,12 +33,14 @@ export class BackOfficeComponent implements OnInit {
     private athlete: AthleteService,
     private route: Router,
     private gymnasium: GymnasiumDataServiceService,
+    private bookings: BookingServiceService,
   ) {
     this.userCreate = new FormGroup({})
     this.gymCreate = new FormGroup({})
     this.athleteCreate = new FormGroup({})
     this.userData;
     this.gymData;
+    this.bookingsData;
     this.athleteData;
     this.sessions = [];
     this.sports = {
@@ -58,6 +62,14 @@ export class BackOfficeComponent implements OnInit {
       (data)=>{
         console.log("Users", data)
         this.userData = data
+      }
+    )
+  }
+
+  fetchBookings(){
+    this.bookings.fetchBookings().subscribe(
+      (data: any)=>{
+        this.bookings = data
       }
     )
   }
@@ -100,6 +112,7 @@ export class BackOfficeComponent implements OnInit {
   }
 
   createData(type: string) {
+    console.log("TYPE", type)
     switch (type) {
 
       case "gym":
@@ -111,11 +124,19 @@ export class BackOfficeComponent implements OnInit {
         break;
 
       case "athlete":
-        this.athlete.createFullAthlete(this.athleteCreate.value.lastName, this.athleteCreate.value.firstName, this.athleteCreate.value.gender, this.athleteCreate.value.age, this.sports)
+        this.athlete.createFullAthlete(this.athleteCreate.value.lastName, this.athleteCreate.value.firstName, this.athleteCreate.value.gender, this.athleteCreate.value.age, this.sports).subscribe(
+          (data: any)=>{
+            window.location.reload()
+          }
+        )
         break;
 
       case "user":
-        this.user.createUser(this.userCreate.value.email, this.userCreate.value.password, this.userCreate.value.firstName, this.userCreate.value.lastName)
+        this.user.createUser(this.userCreate.value.email, this.userCreate.value.password, this.userCreate.value.firstName, this.userCreate.value.lastName).subscribe(
+          (data: any)=>{
+            window.location.reload()
+          }
+        )
         break;
 
       default:

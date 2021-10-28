@@ -25,11 +25,11 @@ export class AthleteService {
   }
 
   createFullAthlete(nom: string, prenom: string, sexe: string, age: number, sports: any) {
-    return this.httpClient.post(this.ATHLETE_CREATE, {"Nom": nom, "Prenom": prenom, "Sexe": sexe, "Age": age, "Sports": sports});
+    return this.httpClient.post(this.ATHLETE_CREATE, {"nom": nom, "prenom": prenom, "sexe": sexe, "age": age, "sports": sports});
   }
 
   updateAthlete(id: string, nom: string, prenom: string, sexe: string, age: number, sports: any) {
-    return this.httpClient.put(`${this.ATHLETE_UPDATE}/${id}`, {"nom": nom, "prenom": prenom, "Sexe": sexe, "Age": age, "Sports": sports});
+    return this.httpClient.put(`${this.ATHLETE_UPDATE}/${id}`, {"nom": nom, "prenom": prenom, "sexe": sexe, "age": age, "sports": sports});
   }
 
   getAthletes() {
