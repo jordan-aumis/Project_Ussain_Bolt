@@ -47,9 +47,27 @@ button {
   border: 0;
   background-color: transparent;
 }
+.user-nav{
+  display: flex;
+  justify-content: center;
+}
+
+.login-button, .register-button{
+  padding: 10px;
+  border: 1px solid #241276;
+  color: #241276;
+  border-radius: 10px;
+}
+.register-button{
+  background: #241276 ;
+  color: #fff !important;
+}
 
 #cover {
   padding: 20px;
+  position: sticky;
+  z-index: 100;
+  top: 0;
   background-color: hsl(250, 75%, 58%);
   width: 100%;
   border-radius: 20px;
