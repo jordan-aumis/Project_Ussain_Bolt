@@ -69,7 +69,7 @@
   </table>
 
   <form #sportForm="ngForm" (ngSubmit)="addSports(sportForm.value)" class="tableSport">
-    <table border="1px">
+    <table border="1px" class="table">
       <thead class="thead-dark">
         <tr>
           <th scope="col">Sports</th>
@@ -116,7 +116,7 @@
           <td><input  class="form-control"  matInput placeholder="First name" formControlName="firstName"></td>
           <td><input  class="form-control"  matInput placeholder="gender" formControlName="gender"></td>
           <td><input  class="form-control"  matInput placeholder="age" formControlName="age"></td>
-          <td><button (click)="createData('athlete')">Create</button></td>
+          <td><button (click)="createData('athlete')" class="btn btn-primary">Create</button></td>
         </tr>
       </tbody>
     </table>
@@ -156,7 +156,7 @@
   </table>
 
   <form #sessionForm="ngForm" (ngSubmit)="addSession(sessionForm.value)">
-    <table border="1px">
+    <table border="1px" class="table">
       <thead class="thead-dark">
         <tr>
           <th scope="col">Sport</th>
@@ -198,7 +198,7 @@
       </tbody>
 
       <section>
-        <button type="submit">Add Session</button>
+        <button type="submit" class="btn btn-primary">Add Session</button>
       </section>
     </table>
   </form>
